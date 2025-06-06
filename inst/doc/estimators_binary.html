@@ -1,0 +1,979 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+<meta charset="utf-8" />
+<meta name="generator" content="pandoc" />
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
+
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+
+
+
+<title>Binary outcomes</title>
+
+<script>// Pandoc 2.9 adds attributes on both header and div. We remove the former (to
+// be compatible with the behavior of Pandoc < 2.8).
+document.addEventListener('DOMContentLoaded', function(e) {
+  var hs = document.querySelectorAll("div.section[class*='level'] > :first-child");
+  var i, h, a;
+  for (i = 0; i < hs.length; i++) {
+    h = hs[i];
+    if (!/^h[1-6]$/i.test(h.tagName)) continue;  // it should be a header h1-h6
+    a = h.attributes;
+    while (a.length > 0) h.removeAttribute(a[0].name);
+  }
+});
+</script>
+
+<style type="text/css">
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+span.underline{text-decoration: underline;}
+div.column{display: inline-block; vertical-align: top; width: 50%;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+</style>
+
+
+
+<style type="text/css">
+code {
+white-space: pre;
+}
+.sourceCode {
+overflow: visible;
+}
+</style>
+<style type="text/css" data-origin="pandoc">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+{ counter-reset: source-line 0; }
+pre.numberSource code > span
+{ position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+{ content: counter(source-line);
+position: relative; left: -1em; text-align: right; vertical-align: baseline;
+border: none; display: inline-block;
+-webkit-touch-callout: none; -webkit-user-select: none;
+-khtml-user-select: none; -moz-user-select: none;
+-ms-user-select: none; user-select: none;
+padding: 0 4px; width: 4em;
+color: #aaaaaa;
+}
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa; padding-left: 4px; }
+div.sourceCode
+{ }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } 
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } 
+code span.at { color: #7d9029; } 
+code span.bn { color: #40a070; } 
+code span.bu { color: #008000; } 
+code span.cf { color: #007020; font-weight: bold; } 
+code span.ch { color: #4070a0; } 
+code span.cn { color: #880000; } 
+code span.co { color: #60a0b0; font-style: italic; } 
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } 
+code span.do { color: #ba2121; font-style: italic; } 
+code span.dt { color: #902000; } 
+code span.dv { color: #40a070; } 
+code span.er { color: #ff0000; font-weight: bold; } 
+code span.ex { } 
+code span.fl { color: #40a070; } 
+code span.fu { color: #06287e; } 
+code span.im { color: #008000; font-weight: bold; } 
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } 
+code span.kw { color: #007020; font-weight: bold; } 
+code span.op { color: #666666; } 
+code span.ot { color: #007020; } 
+code span.pp { color: #bc7a00; } 
+code span.sc { color: #4070a0; } 
+code span.ss { color: #bb6688; } 
+code span.st { color: #4070a0; } 
+code span.va { color: #19177c; } 
+code span.vs { color: #4070a0; } 
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } 
+</style>
+<script>
+// apply pandoc div.sourceCode style to pre.sourceCode instead
+(function() {
+  var sheets = document.styleSheets;
+  for (var i = 0; i < sheets.length; i++) {
+    if (sheets[i].ownerNode.dataset["origin"] !== "pandoc") continue;
+    try { var rules = sheets[i].cssRules; } catch (e) { continue; }
+    var j = 0;
+    while (j < rules.length) {
+      var rule = rules[j];
+      // check if there is a div.sourceCode rule
+      if (rule.type !== rule.STYLE_RULE || rule.selectorText !== "div.sourceCode") {
+        j++;
+        continue;
+      }
+      var style = rule.style.cssText;
+      // check if color or background-color is set
+      if (rule.style.color === '' && rule.style.backgroundColor === '') {
+        j++;
+        continue;
+      }
+      // replace div.sourceCode by a pre.sourceCode rule
+      sheets[i].deleteRule(j);
+      sheets[i].insertRule('pre.sourceCode{' + style + '}', j);
+    }
+  }
+})();
+</script>
+
+
+
+
+<style type="text/css">body {
+background-color: #fff;
+margin: 1em auto;
+max-width: 700px;
+overflow: visible;
+padding-left: 2em;
+padding-right: 2em;
+font-family: "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
+font-size: 14px;
+line-height: 1.35;
+}
+#TOC {
+clear: both;
+margin: 0 0 10px 10px;
+padding: 4px;
+width: 400px;
+border: 1px solid #CCCCCC;
+border-radius: 5px;
+background-color: #f6f6f6;
+font-size: 13px;
+line-height: 1.3;
+}
+#TOC .toctitle {
+font-weight: bold;
+font-size: 15px;
+margin-left: 5px;
+}
+#TOC ul {
+padding-left: 40px;
+margin-left: -1.5em;
+margin-top: 5px;
+margin-bottom: 5px;
+}
+#TOC ul ul {
+margin-left: -2em;
+}
+#TOC li {
+line-height: 16px;
+}
+table {
+margin: 1em auto;
+border-width: 1px;
+border-color: #DDDDDD;
+border-style: outset;
+border-collapse: collapse;
+}
+table th {
+border-width: 2px;
+padding: 5px;
+border-style: inset;
+}
+table td {
+border-width: 1px;
+border-style: inset;
+line-height: 18px;
+padding: 5px 5px;
+}
+table, table th, table td {
+border-left-style: none;
+border-right-style: none;
+}
+table thead, table tr.even {
+background-color: #f7f7f7;
+}
+p {
+margin: 0.5em 0;
+}
+blockquote {
+background-color: #f6f6f6;
+padding: 0.25em 0.75em;
+}
+hr {
+border-style: solid;
+border: none;
+border-top: 1px solid #777;
+margin: 28px 0;
+}
+dl {
+margin-left: 0;
+}
+dl dd {
+margin-bottom: 13px;
+margin-left: 13px;
+}
+dl dt {
+font-weight: bold;
+}
+ul {
+margin-top: 0;
+}
+ul li {
+list-style: circle outside;
+}
+ul ul {
+margin-bottom: 0;
+}
+pre, code {
+background-color: #f7f7f7;
+border-radius: 3px;
+color: #333;
+white-space: pre-wrap; 
+}
+pre {
+border-radius: 3px;
+margin: 5px 0px 10px 0px;
+padding: 10px;
+}
+pre:not([class]) {
+background-color: #f7f7f7;
+}
+code {
+font-family: Consolas, Monaco, 'Courier New', monospace;
+font-size: 85%;
+}
+p > code, li > code {
+padding: 2px 0px;
+}
+div.figure {
+text-align: center;
+}
+img {
+background-color: #FFFFFF;
+padding: 2px;
+border: 1px solid #DDDDDD;
+border-radius: 3px;
+border: 1px solid #CCCCCC;
+margin: 0 5px;
+}
+h1 {
+margin-top: 0;
+font-size: 35px;
+line-height: 40px;
+}
+h2 {
+border-bottom: 4px solid #f7f7f7;
+padding-top: 10px;
+padding-bottom: 2px;
+font-size: 145%;
+}
+h3 {
+border-bottom: 2px solid #f7f7f7;
+padding-top: 10px;
+font-size: 120%;
+}
+h4 {
+border-bottom: 1px solid #f7f7f7;
+margin-left: 8px;
+font-size: 105%;
+}
+h5, h6 {
+border-bottom: 1px solid #ccc;
+font-size: 105%;
+}
+a {
+color: #0033dd;
+text-decoration: none;
+}
+a:hover {
+color: #6666ff; }
+a:visited {
+color: #800080; }
+a:visited:hover {
+color: #BB00BB; }
+a[href^="http:"] {
+text-decoration: underline; }
+a[href^="https:"] {
+text-decoration: underline; }
+
+code > span.kw { color: #555; font-weight: bold; } 
+code > span.dt { color: #902000; } 
+code > span.dv { color: #40a070; } 
+code > span.bn { color: #d14; } 
+code > span.fl { color: #d14; } 
+code > span.ch { color: #d14; } 
+code > span.st { color: #d14; } 
+code > span.co { color: #888888; font-style: italic; } 
+code > span.ot { color: #007020; } 
+code > span.al { color: #ff0000; font-weight: bold; } 
+code > span.fu { color: #900; font-weight: bold; } 
+code > span.er { color: #a61717; background-color: #e3d2d2; } 
+</style>
+
+
+
+
+</head>
+
+<body>
+
+
+
+
+<h1 class="title toc-ignore">Binary outcomes</h1>
+
+
+
+<div id="example" class="section level1">
+<h1>Example</h1>
+<p>The example uses the <code>breastcancer</code> data set from the
+risks package and compares the risk of death (a binary variable in this
+case) by categories of cancer stage.</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" tabindex="-1"></a><span class="fu">library</span>(rifttable)</span>
+<span id="cb1-2"><a href="#cb1-2" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
+<span id="cb1-3"><a href="#cb1-3" tabindex="-1"></a><span class="fu">data</span>(breastcancer, <span class="at">package =</span> <span class="st">&quot;risks&quot;</span>)</span>
+<span id="cb1-4"><a href="#cb1-4" tabindex="-1"></a></span>
+<span id="cb1-5"><a href="#cb1-5" tabindex="-1"></a>tibble<span class="sc">::</span><span class="fu">tribble</span>(</span>
+<span id="cb1-6"><a href="#cb1-6" tabindex="-1"></a>  <span class="sc">~</span>label,                      <span class="sc">~</span>type,</span>
+<span id="cb1-7"><a href="#cb1-7" tabindex="-1"></a>  <span class="st">&quot;**Absolute estimates**&quot;</span>,    <span class="st">&quot;&quot;</span>,</span>
+<span id="cb1-8"><a href="#cb1-8" tabindex="-1"></a>  <span class="st">&quot;Observations&quot;</span>,              <span class="st">&quot;total&quot;</span>,</span>
+<span id="cb1-9"><a href="#cb1-9" tabindex="-1"></a>  <span class="st">&quot;Outcomes&quot;</span>,                  <span class="st">&quot;outcomes&quot;</span>,</span>
+<span id="cb1-10"><a href="#cb1-10" tabindex="-1"></a>  <span class="st">&quot;Outcomes/Total&quot;</span>,            <span class="st">&quot;outcomes/total&quot;</span>,</span>
+<span id="cb1-11"><a href="#cb1-11" tabindex="-1"></a>  <span class="st">&quot;Cases/Controls&quot;</span>,            <span class="st">&quot;cases/controls&quot;</span>,</span>
+<span id="cb1-12"><a href="#cb1-12" tabindex="-1"></a>  <span class="st">&quot;Risk&quot;</span>,                      <span class="st">&quot;risk&quot;</span>,</span>
+<span id="cb1-13"><a href="#cb1-13" tabindex="-1"></a>  <span class="st">&quot;Risk (95% CI)&quot;</span>,             <span class="st">&quot;risk (ci)&quot;</span>,</span>
+<span id="cb1-14"><a href="#cb1-14" tabindex="-1"></a>  <span class="st">&quot;Outcomes (Risk)&quot;</span>,           <span class="st">&quot;outcomes (risk)&quot;</span>,</span>
+<span id="cb1-15"><a href="#cb1-15" tabindex="-1"></a>  <span class="st">&quot;Outcomes/Total (Risk)&quot;</span>,     <span class="st">&quot;outcomes/total (risk)&quot;</span>,</span>
+<span id="cb1-16"><a href="#cb1-16" tabindex="-1"></a>  <span class="st">&quot;&quot;</span>,                          <span class="st">&quot;&quot;</span>,</span>
+<span id="cb1-17"><a href="#cb1-17" tabindex="-1"></a>  <span class="st">&quot;**Comparative estimates**&quot;</span>, <span class="st">&quot;&quot;</span>,</span>
+<span id="cb1-18"><a href="#cb1-18" tabindex="-1"></a>  <span class="st">&quot;Risk ratio (95% CI)&quot;</span>,       <span class="st">&quot;rr&quot;</span>,</span>
+<span id="cb1-19"><a href="#cb1-19" tabindex="-1"></a>  <span class="st">&quot;Risk difference (95% CI)&quot;</span>,  <span class="st">&quot;rd&quot;</span>,</span>
+<span id="cb1-20"><a href="#cb1-20" tabindex="-1"></a>  <span class="st">&quot;Odds ratio (95% CI)&quot;</span>,       <span class="st">&quot;or&quot;</span></span>
+<span id="cb1-21"><a href="#cb1-21" tabindex="-1"></a>) <span class="sc">|&gt;</span></span>
+<span id="cb1-22"><a href="#cb1-22" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb1-23"><a href="#cb1-23" tabindex="-1"></a>    <span class="at">exposure =</span> <span class="st">&quot;stage&quot;</span>,</span>
+<span id="cb1-24"><a href="#cb1-24" tabindex="-1"></a>    <span class="at">outcome =</span> <span class="st">&quot;death&quot;</span></span>
+<span id="cb1-25"><a href="#cb1-25" tabindex="-1"></a>  ) <span class="sc">|&gt;</span></span>
+<span id="cb1-26"><a href="#cb1-26" tabindex="-1"></a>  <span class="fu">rifttable</span>(</span>
+<span id="cb1-27"><a href="#cb1-27" tabindex="-1"></a>    <span class="at">data =</span> breastcancer,</span>
+<span id="cb1-28"><a href="#cb1-28" tabindex="-1"></a>    <span class="at">overall =</span> <span class="cn">TRUE</span></span>
+<span id="cb1-29"><a href="#cb1-29" tabindex="-1"></a>  ) <span class="sc">|&gt;</span></span>
+<span id="cb1-30"><a href="#cb1-30" tabindex="-1"></a>  <span class="fu">rt_gt</span>() <span class="co"># Formatted output</span></span></code></pre></div>
+<div id="rifttable" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#rifttable table {
+font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
+-webkit-font-smoothing: antialiased;
+-moz-osx-font-smoothing: grayscale;
+}
+#rifttable thead, #rifttable tbody, #rifttable tfoot, #rifttable tr, #rifttable td, #rifttable th {
+border-style: none;
+}
+#rifttable p {
+margin: 0;
+padding: 0;
+}
+#rifttable .gt_table {
+display: table;
+border-collapse: collapse;
+line-height: normal;
+margin-left: auto;
+margin-right: auto;
+color: #333333;
+font-size: 16px;
+font-weight: normal;
+font-style: normal;
+background-color: #FFFFFF;
+width: auto;
+border-top-style: none;
+border-top-width: 2px;
+border-top-color: #A8A8A8;
+border-right-style: none;
+border-right-width: 2px;
+border-right-color: #D3D3D3;
+border-bottom-style: solid;
+border-bottom-width: 2px;
+border-bottom-color: #A8A8A8;
+border-left-style: none;
+border-left-width: 2px;
+border-left-color: #D3D3D3;
+}
+#rifttable .gt_caption {
+padding-top: 4px;
+padding-bottom: 4px;
+}
+#rifttable .gt_title {
+color: #333333;
+font-size: 125%;
+font-weight: initial;
+padding-top: 4px;
+padding-bottom: 4px;
+padding-left: 5px;
+padding-right: 5px;
+border-bottom-color: #FFFFFF;
+border-bottom-width: 0;
+}
+#rifttable .gt_subtitle {
+color: #333333;
+font-size: 85%;
+font-weight: initial;
+padding-top: 3px;
+padding-bottom: 5px;
+padding-left: 5px;
+padding-right: 5px;
+border-top-color: #FFFFFF;
+border-top-width: 0;
+}
+#rifttable .gt_heading {
+background-color: #FFFFFF;
+text-align: center;
+border-bottom-color: #FFFFFF;
+border-left-style: none;
+border-left-width: 1px;
+border-left-color: #D3D3D3;
+border-right-style: none;
+border-right-width: 1px;
+border-right-color: #D3D3D3;
+}
+#rifttable .gt_bottom_border {
+border-bottom-style: solid;
+border-bottom-width: 2px;
+border-bottom-color: #D3D3D3;
+}
+#rifttable .gt_col_headings {
+border-top-style: none;
+border-top-width: 2px;
+border-top-color: #D3D3D3;
+border-bottom-style: solid;
+border-bottom-width: 2px;
+border-bottom-color: #D3D3D3;
+border-left-style: none;
+border-left-width: 1px;
+border-left-color: #D3D3D3;
+border-right-style: none;
+border-right-width: 1px;
+border-right-color: #D3D3D3;
+}
+#rifttable .gt_col_heading {
+color: #333333;
+background-color: #FFFFFF;
+font-size: 100%;
+font-weight: bold;
+text-transform: inherit;
+border-left-style: none;
+border-left-width: 1px;
+border-left-color: #D3D3D3;
+border-right-style: none;
+border-right-width: 1px;
+border-right-color: #D3D3D3;
+vertical-align: bottom;
+padding-top: 5px;
+padding-bottom: 6px;
+padding-left: 5px;
+padding-right: 5px;
+overflow-x: hidden;
+}
+#rifttable .gt_column_spanner_outer {
+color: #333333;
+background-color: #FFFFFF;
+font-size: 100%;
+font-weight: bold;
+text-transform: inherit;
+padding-top: 0;
+padding-bottom: 0;
+padding-left: 4px;
+padding-right: 4px;
+}
+#rifttable .gt_column_spanner_outer:first-child {
+padding-left: 0;
+}
+#rifttable .gt_column_spanner_outer:last-child {
+padding-right: 0;
+}
+#rifttable .gt_column_spanner {
+border-bottom-style: solid;
+border-bottom-width: 2px;
+border-bottom-color: #D3D3D3;
+vertical-align: bottom;
+padding-top: 5px;
+padding-bottom: 5px;
+overflow-x: hidden;
+display: inline-block;
+width: 100%;
+}
+#rifttable .gt_spanner_row {
+border-bottom-style: hidden;
+}
+#rifttable .gt_group_heading {
+padding-top: 8px;
+padding-bottom: 8px;
+padding-left: 5px;
+padding-right: 5px;
+color: #333333;
+background-color: #FFFFFF;
+font-size: 100%;
+font-weight: initial;
+text-transform: inherit;
+border-top-style: solid;
+border-top-width: 2px;
+border-top-color: #D3D3D3;
+border-bottom-style: solid;
+border-bottom-width: 2px;
+border-bottom-color: #D3D3D3;
+border-left-style: none;
+border-left-width: 1px;
+border-left-color: #D3D3D3;
+border-right-style: none;
+border-right-width: 1px;
+border-right-color: #D3D3D3;
+vertical-align: middle;
+text-align: left;
+}
+#rifttable .gt_empty_group_heading {
+padding: 0.5px;
+color: #333333;
+background-color: #FFFFFF;
+font-size: 100%;
+font-weight: initial;
+border-top-style: solid;
+border-top-width: 2px;
+border-top-color: #D3D3D3;
+border-bottom-style: solid;
+border-bottom-width: 2px;
+border-bottom-color: #D3D3D3;
+vertical-align: middle;
+}
+#rifttable .gt_from_md > :first-child {
+margin-top: 0;
+}
+#rifttable .gt_from_md > :last-child {
+margin-bottom: 0;
+}
+#rifttable .gt_row {
+padding-top: 0px;
+padding-bottom: 0px;
+padding-left: 5px;
+padding-right: 5px;
+margin: 10px;
+border-top-style: solid;
+border-top-width: 1px;
+border-top-color: #D3D3D3;
+border-left-style: none;
+border-left-width: 1px;
+border-left-color: #D3D3D3;
+border-right-style: none;
+border-right-width: 1px;
+border-right-color: #D3D3D3;
+vertical-align: middle;
+overflow-x: hidden;
+}
+#rifttable .gt_stub {
+color: #333333;
+background-color: #FFFFFF;
+font-size: 100%;
+font-weight: initial;
+text-transform: inherit;
+border-right-style: solid;
+border-right-width: 2px;
+border-right-color: #D3D3D3;
+padding-left: 5px;
+padding-right: 5px;
+}
+#rifttable .gt_stub_row_group {
+color: #333333;
+background-color: #FFFFFF;
+font-size: 100%;
+font-weight: initial;
+text-transform: inherit;
+border-right-style: solid;
+border-right-width: 2px;
+border-right-color: #D3D3D3;
+padding-left: 5px;
+padding-right: 5px;
+vertical-align: top;
+}
+#rifttable .gt_row_group_first td {
+border-top-width: 2px;
+}
+#rifttable .gt_row_group_first th {
+border-top-width: 2px;
+}
+#rifttable .gt_summary_row {
+color: #333333;
+background-color: #FFFFFF;
+text-transform: inherit;
+padding-top: 8px;
+padding-bottom: 8px;
+padding-left: 5px;
+padding-right: 5px;
+}
+#rifttable .gt_first_summary_row {
+border-top-style: solid;
+border-top-color: #D3D3D3;
+}
+#rifttable .gt_first_summary_row.thick {
+border-top-width: 2px;
+}
+#rifttable .gt_last_summary_row {
+padding-top: 8px;
+padding-bottom: 8px;
+padding-left: 5px;
+padding-right: 5px;
+border-bottom-style: solid;
+border-bottom-width: 2px;
+border-bottom-color: #D3D3D3;
+}
+#rifttable .gt_grand_summary_row {
+color: #333333;
+background-color: #FFFFFF;
+text-transform: inherit;
+padding-top: 8px;
+padding-bottom: 8px;
+padding-left: 5px;
+padding-right: 5px;
+}
+#rifttable .gt_first_grand_summary_row {
+padding-top: 8px;
+padding-bottom: 8px;
+padding-left: 5px;
+padding-right: 5px;
+border-top-style: double;
+border-top-width: 6px;
+border-top-color: #D3D3D3;
+}
+#rifttable .gt_last_grand_summary_row_top {
+padding-top: 8px;
+padding-bottom: 8px;
+padding-left: 5px;
+padding-right: 5px;
+border-bottom-style: double;
+border-bottom-width: 6px;
+border-bottom-color: #D3D3D3;
+}
+#rifttable .gt_striped {
+background-color: rgba(128, 128, 128, 0.05);
+}
+#rifttable .gt_table_body {
+border-top-style: none;
+border-top-width: 2px;
+border-top-color: #D3D3D3;
+border-bottom-style: solid;
+border-bottom-width: 2px;
+border-bottom-color: #D3D3D3;
+}
+#rifttable .gt_footnotes {
+color: #333333;
+background-color: #FFFFFF;
+border-bottom-style: none;
+border-bottom-width: 2px;
+border-bottom-color: #D3D3D3;
+border-left-style: none;
+border-left-width: 2px;
+border-left-color: #D3D3D3;
+border-right-style: none;
+border-right-width: 2px;
+border-right-color: #D3D3D3;
+}
+#rifttable .gt_footnote {
+margin: 0px;
+font-size: 90%;
+padding-top: 4px;
+padding-bottom: 4px;
+padding-left: 5px;
+padding-right: 5px;
+}
+#rifttable .gt_sourcenotes {
+color: #333333;
+background-color: #FFFFFF;
+border-bottom-style: none;
+border-bottom-width: 2px;
+border-bottom-color: #D3D3D3;
+border-left-style: none;
+border-left-width: 2px;
+border-left-color: #D3D3D3;
+border-right-style: none;
+border-right-width: 2px;
+border-right-color: #D3D3D3;
+}
+#rifttable .gt_sourcenote {
+font-size: 90%;
+padding-top: 4px;
+padding-bottom: 4px;
+padding-left: 5px;
+padding-right: 5px;
+}
+#rifttable .gt_left {
+text-align: left;
+}
+#rifttable .gt_center {
+text-align: center;
+}
+#rifttable .gt_right {
+text-align: right;
+font-variant-numeric: tabular-nums;
+}
+#rifttable .gt_font_normal {
+font-weight: normal;
+}
+#rifttable .gt_font_bold {
+font-weight: bold;
+}
+#rifttable .gt_font_italic {
+font-style: italic;
+}
+#rifttable .gt_super {
+font-size: 65%;
+}
+#rifttable .gt_footnote_marks {
+font-size: 75%;
+vertical-align: 0.4em;
+position: initial;
+}
+#rifttable .gt_asterisk {
+font-size: 100%;
+vertical-align: 0;
+}
+#rifttable .gt_indent_1 {
+text-indent: 5px;
+}
+#rifttable .gt_indent_2 {
+text-indent: 10px;
+}
+#rifttable .gt_indent_3 {
+text-indent: 15px;
+}
+#rifttable .gt_indent_4 {
+text-indent: 20px;
+}
+#rifttable .gt_indent_5 {
+text-indent: 25px;
+}
+#rifttable .katex-display {
+display: inline-flex !important;
+margin-bottom: 0.75em !important;
+}
+#rifttable div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
+height: 0px !important;
+}
+</style>
+<table class="gt_table" data-quarto-disable-processing="false" data-quarto-bootstrap="false">
+  <thead>
+    <tr class="gt_col_headings">
+      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1" style="text-align: left; vertical-align: bottom;" scope="col" id="Summary">Summary</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" style="text-align: left; vertical-align: bottom;" scope="col" id="Overall">Overall</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1" style="text-align: left; vertical-align: bottom;" scope="col" id="Stage-I">Stage I</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" style="text-align: left; vertical-align: bottom;" scope="col" id="Stage-II">Stage II</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" style="text-align: left; vertical-align: bottom;" scope="col" id="Stage-III">Stage III</th>
+    </tr>
+  </thead>
+  <tbody class="gt_table_body">
+    <tr><td headers="Summary" class="gt_row gt_left" style="text-align: left; vertical-align: top;"><span class="gt_from_md"><strong>Absolute estimates</strong></span></td>
+<td headers="Overall" class="gt_row gt_right" style="text-align: left; vertical-align: top;"></td>
+<td headers="Stage I" class="gt_row gt_left" style="text-align: left; vertical-align: top;"></td>
+<td headers="Stage II" class="gt_row gt_right" style="text-align: left; vertical-align: top;"></td>
+<td headers="Stage III" class="gt_row gt_right" style="text-align: left; vertical-align: top;"></td></tr>
+    <tr><td headers="Summary" class="gt_row gt_left" style="text-align: left; vertical-align: top;"><span class="gt_from_md">Observations</span></td>
+<td headers="Overall" class="gt_row gt_right" style="text-align: left; vertical-align: top;">192</td>
+<td headers="Stage I" class="gt_row gt_left" style="text-align: left; vertical-align: top;">67</td>
+<td headers="Stage II" class="gt_row gt_right" style="text-align: left; vertical-align: top;">96</td>
+<td headers="Stage III" class="gt_row gt_right" style="text-align: left; vertical-align: top;">29</td></tr>
+    <tr><td headers="Summary" class="gt_row gt_left" style="text-align: left; vertical-align: top;"><span class="gt_from_md">Outcomes</span></td>
+<td headers="Overall" class="gt_row gt_right" style="text-align: left; vertical-align: top;">54</td>
+<td headers="Stage I" class="gt_row gt_left" style="text-align: left; vertical-align: top;">7</td>
+<td headers="Stage II" class="gt_row gt_right" style="text-align: left; vertical-align: top;">26</td>
+<td headers="Stage III" class="gt_row gt_right" style="text-align: left; vertical-align: top;">21</td></tr>
+    <tr><td headers="Summary" class="gt_row gt_left" style="text-align: left; vertical-align: top;"><span class="gt_from_md">Outcomes/Total</span></td>
+<td headers="Overall" class="gt_row gt_right" style="text-align: left; vertical-align: top;">54/192</td>
+<td headers="Stage I" class="gt_row gt_left" style="text-align: left; vertical-align: top;">7/67</td>
+<td headers="Stage II" class="gt_row gt_right" style="text-align: left; vertical-align: top;">26/96</td>
+<td headers="Stage III" class="gt_row gt_right" style="text-align: left; vertical-align: top;">21/29</td></tr>
+    <tr><td headers="Summary" class="gt_row gt_left" style="text-align: left; vertical-align: top;"><span class="gt_from_md">Cases/Controls</span></td>
+<td headers="Overall" class="gt_row gt_right" style="text-align: left; vertical-align: top;">54/138</td>
+<td headers="Stage I" class="gt_row gt_left" style="text-align: left; vertical-align: top;">7/60</td>
+<td headers="Stage II" class="gt_row gt_right" style="text-align: left; vertical-align: top;">26/70</td>
+<td headers="Stage III" class="gt_row gt_right" style="text-align: left; vertical-align: top;">21/8</td></tr>
+    <tr><td headers="Summary" class="gt_row gt_left" style="text-align: left; vertical-align: top;"><span class="gt_from_md">Risk</span></td>
+<td headers="Overall" class="gt_row gt_right" style="text-align: left; vertical-align: top;">0.28</td>
+<td headers="Stage I" class="gt_row gt_left" style="text-align: left; vertical-align: top;">0.10</td>
+<td headers="Stage II" class="gt_row gt_right" style="text-align: left; vertical-align: top;">0.27</td>
+<td headers="Stage III" class="gt_row gt_right" style="text-align: left; vertical-align: top;">0.72</td></tr>
+    <tr><td headers="Summary" class="gt_row gt_left" style="text-align: left; vertical-align: top;"><span class="gt_from_md">Risk (95% CI)</span></td>
+<td headers="Overall" class="gt_row gt_right" style="text-align: left; vertical-align: top;">0.28 (0.22, 0.35)</td>
+<td headers="Stage I" class="gt_row gt_left" style="text-align: left; vertical-align: top;">0.10 (0.05, 0.20)</td>
+<td headers="Stage II" class="gt_row gt_right" style="text-align: left; vertical-align: top;">0.27 (0.19, 0.37)</td>
+<td headers="Stage III" class="gt_row gt_right" style="text-align: left; vertical-align: top;">0.72 (0.54, 0.85)</td></tr>
+    <tr><td headers="Summary" class="gt_row gt_left" style="text-align: left; vertical-align: top;"><span class="gt_from_md">Outcomes (Risk)</span></td>
+<td headers="Overall" class="gt_row gt_right" style="text-align: left; vertical-align: top;">54 (0.28)</td>
+<td headers="Stage I" class="gt_row gt_left" style="text-align: left; vertical-align: top;">7 (0.10)</td>
+<td headers="Stage II" class="gt_row gt_right" style="text-align: left; vertical-align: top;">26 (0.27)</td>
+<td headers="Stage III" class="gt_row gt_right" style="text-align: left; vertical-align: top;">21 (0.72)</td></tr>
+    <tr><td headers="Summary" class="gt_row gt_left" style="text-align: left; vertical-align: top;"><span class="gt_from_md">Outcomes/Total (Risk)</span></td>
+<td headers="Overall" class="gt_row gt_right" style="text-align: left; vertical-align: top;">54/192 (0.28)</td>
+<td headers="Stage I" class="gt_row gt_left" style="text-align: left; vertical-align: top;">7/67 (0.10)</td>
+<td headers="Stage II" class="gt_row gt_right" style="text-align: left; vertical-align: top;">26/96 (0.27)</td>
+<td headers="Stage III" class="gt_row gt_right" style="text-align: left; vertical-align: top;">21/29 (0.72)</td></tr>
+    <tr><td headers="Summary" class="gt_row gt_left" style="text-align: left; vertical-align: top; text-indent: 10px; border-top-width: 0; border-top-style: solid; border-top-color: #000000;"><span class="gt_from_md"></span></td>
+<td headers="Overall" class="gt_row gt_right" style="text-align: left; vertical-align: top; border-top-width: 0; border-top-style: solid; border-top-color: #000000;"></td>
+<td headers="Stage I" class="gt_row gt_left" style="text-align: left; vertical-align: top; border-top-width: 0; border-top-style: solid; border-top-color: #000000;"></td>
+<td headers="Stage II" class="gt_row gt_right" style="text-align: left; vertical-align: top; border-top-width: 0; border-top-style: solid; border-top-color: #000000;"></td>
+<td headers="Stage III" class="gt_row gt_right" style="text-align: left; vertical-align: top; border-top-width: 0; border-top-style: solid; border-top-color: #000000;"></td></tr>
+    <tr><td headers="Summary" class="gt_row gt_left" style="text-align: left; vertical-align: top;"><span class="gt_from_md"><strong>Comparative estimates</strong></span></td>
+<td headers="Overall" class="gt_row gt_right" style="text-align: left; vertical-align: top;"></td>
+<td headers="Stage I" class="gt_row gt_left" style="text-align: left; vertical-align: top;"></td>
+<td headers="Stage II" class="gt_row gt_right" style="text-align: left; vertical-align: top;"></td>
+<td headers="Stage III" class="gt_row gt_right" style="text-align: left; vertical-align: top;"></td></tr>
+    <tr><td headers="Summary" class="gt_row gt_left" style="text-align: left; vertical-align: top;"><span class="gt_from_md">Risk ratio (95% CI)</span></td>
+<td headers="Overall" class="gt_row gt_right" style="text-align: left; vertical-align: top;"></td>
+<td headers="Stage I" class="gt_row gt_left" style="text-align: left; vertical-align: top;">1 (reference)</td>
+<td headers="Stage II" class="gt_row gt_right" style="text-align: left; vertical-align: top;">2.59 (1.20, 5.6)</td>
+<td headers="Stage III" class="gt_row gt_right" style="text-align: left; vertical-align: top;">6.9 (3.3, 14)</td></tr>
+    <tr><td headers="Summary" class="gt_row gt_left" style="text-align: left; vertical-align: top;"><span class="gt_from_md">Risk difference (95% CI)</span></td>
+<td headers="Overall" class="gt_row gt_right" style="text-align: left; vertical-align: top;"></td>
+<td headers="Stage I" class="gt_row gt_left" style="text-align: left; vertical-align: top;">0 (reference)</td>
+<td headers="Stage II" class="gt_row gt_right" style="text-align: left; vertical-align: top;">0.17 (0.05, 0.28)</td>
+<td headers="Stage III" class="gt_row gt_right" style="text-align: left; vertical-align: top;">0.62 (0.44, 0.80)</td></tr>
+    <tr><td headers="Summary" class="gt_row gt_left" style="text-align: left; vertical-align: top;"><span class="gt_from_md">Odds ratio (95% CI)</span></td>
+<td headers="Overall" class="gt_row gt_right" style="text-align: left; vertical-align: top;"></td>
+<td headers="Stage I" class="gt_row gt_left" style="text-align: left; vertical-align: top;">1 (reference)</td>
+<td headers="Stage II" class="gt_row gt_right" style="text-align: left; vertical-align: top;">3.2 (1.35, 8.4)</td>
+<td headers="Stage III" class="gt_row gt_right" style="text-align: left; vertical-align: top;">22 (7.7, 75)</td></tr>
+  </tbody>
+  
+  
+</table>
+</div>
+</div>
+<div id="absolute-estimates-per-exposure-category" class="section level1">
+<h1>Absolute estimates per exposure category</h1>
+<table>
+<colgroup>
+<col width="14%" />
+<col width="50%" />
+<col width="35%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th><code>type</code></th>
+<th>Description</th>
+<th>Options (<code>arguments =</code>)</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>&quot;cases/controls&quot;</code></td>
+<td>Cases and non-cases (events and non-events); useful for case-control
+studies.</td>
+<td></td>
+</tr>
+<tr class="even">
+<td><code>&quot;outcomes&quot;</code></td>
+<td>Outcome count.</td>
+<td></td>
+</tr>
+<tr class="odd">
+<td><code>&quot;outcomes (risk)&quot;</code></td>
+<td>A combination: Outcomes followed by risk in parentheses.</td>
+<td></td>
+</tr>
+<tr class="even">
+<td><code>&quot;outcomes/total (risk)&quot;</code></td>
+<td>A combination: Outcomes slash total followed by risk in
+parentheses.</td>
+<td></td>
+</tr>
+<tr class="odd">
+<td><code>&quot;risk&quot;</code></td>
+<td>Risk (or prevalence), calculated as a proportion, <em>i.e.</em>,
+outcomes divided by number of observations. Change between display as
+proportion or percent using the parameter <code>risk_percent</code> of
+<code>rifttable()</code>.</td>
+<td></td>
+</tr>
+<tr class="even">
+<td><code>&quot;risk (ci)&quot;</code></td>
+<td>Risk with confidence interval (default: 95%): Wilson score interval
+for binomial proportions, see <code>rifttable::scoreci()</code>.</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div id="comparative-estimates-with-confidence-intervals" class="section level1">
+<h1>Comparative estimates with confidence intervals</h1>
+<table>
+<colgroup>
+<col width="14%" />
+<col width="50%" />
+<col width="35%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th><code>type</code></th>
+<th>Description</th>
+<th>Options (<code>arguments =</code>)</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>&quot;irr&quot;</code></td>
+<td>Incidence rate ratio for count outcomes from Poisson regression
+model, with confidence interval (default: 95%).</td>
+<td></td>
+</tr>
+<tr class="even">
+<td><code>&quot;or&quot;</code></td>
+<td>Odds ratio from logistic regression, with confidence interval
+(default: 95%).</td>
+<td></td>
+</tr>
+<tr class="odd">
+<td><code>&quot;rd&quot;</code></td>
+<td>Risk difference (or prevalence difference) from risks::riskdiff(),
+with confidence interval (default: 95%).</td>
+<td><code>list(approach = &quot;margstd_boot&quot;, bootrepeats = 2000)</code> to
+request model fitting via marginal standardization with 2000
+bootstraps.</td>
+</tr>
+<tr class="even">
+<td><code>&quot;rr&quot;</code></td>
+<td>Risk ratio (or prevalence ratio) from
+<code>risks::riskratio()</code>, with confidence interval (default:
+95%).</td>
+<td>See <code>&quot;rd&quot;</code>.</td>
+</tr>
+</tbody>
+</table>
+</div>
+
+
+
+<!-- code folding -->
+
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>

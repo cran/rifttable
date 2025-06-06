@@ -1,0 +1,1172 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+<meta charset="utf-8" />
+<meta name="generator" content="pandoc" />
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
+
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+
+
+
+<title>Survival outcomes</title>
+
+<script>// Pandoc 2.9 adds attributes on both header and div. We remove the former (to
+// be compatible with the behavior of Pandoc < 2.8).
+document.addEventListener('DOMContentLoaded', function(e) {
+  var hs = document.querySelectorAll("div.section[class*='level'] > :first-child");
+  var i, h, a;
+  for (i = 0; i < hs.length; i++) {
+    h = hs[i];
+    if (!/^h[1-6]$/i.test(h.tagName)) continue;  // it should be a header h1-h6
+    a = h.attributes;
+    while (a.length > 0) h.removeAttribute(a[0].name);
+  }
+});
+</script>
+
+<style type="text/css">
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+span.underline{text-decoration: underline;}
+div.column{display: inline-block; vertical-align: top; width: 50%;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+</style>
+
+
+
+<style type="text/css">
+code {
+white-space: pre;
+}
+.sourceCode {
+overflow: visible;
+}
+</style>
+<style type="text/css" data-origin="pandoc">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+{ counter-reset: source-line 0; }
+pre.numberSource code > span
+{ position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+{ content: counter(source-line);
+position: relative; left: -1em; text-align: right; vertical-align: baseline;
+border: none; display: inline-block;
+-webkit-touch-callout: none; -webkit-user-select: none;
+-khtml-user-select: none; -moz-user-select: none;
+-ms-user-select: none; user-select: none;
+padding: 0 4px; width: 4em;
+color: #aaaaaa;
+}
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa; padding-left: 4px; }
+div.sourceCode
+{ }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } 
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } 
+code span.at { color: #7d9029; } 
+code span.bn { color: #40a070; } 
+code span.bu { color: #008000; } 
+code span.cf { color: #007020; font-weight: bold; } 
+code span.ch { color: #4070a0; } 
+code span.cn { color: #880000; } 
+code span.co { color: #60a0b0; font-style: italic; } 
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } 
+code span.do { color: #ba2121; font-style: italic; } 
+code span.dt { color: #902000; } 
+code span.dv { color: #40a070; } 
+code span.er { color: #ff0000; font-weight: bold; } 
+code span.ex { } 
+code span.fl { color: #40a070; } 
+code span.fu { color: #06287e; } 
+code span.im { color: #008000; font-weight: bold; } 
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } 
+code span.kw { color: #007020; font-weight: bold; } 
+code span.op { color: #666666; } 
+code span.ot { color: #007020; } 
+code span.pp { color: #bc7a00; } 
+code span.sc { color: #4070a0; } 
+code span.ss { color: #bb6688; } 
+code span.st { color: #4070a0; } 
+code span.va { color: #19177c; } 
+code span.vs { color: #4070a0; } 
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } 
+</style>
+<script>
+// apply pandoc div.sourceCode style to pre.sourceCode instead
+(function() {
+  var sheets = document.styleSheets;
+  for (var i = 0; i < sheets.length; i++) {
+    if (sheets[i].ownerNode.dataset["origin"] !== "pandoc") continue;
+    try { var rules = sheets[i].cssRules; } catch (e) { continue; }
+    var j = 0;
+    while (j < rules.length) {
+      var rule = rules[j];
+      // check if there is a div.sourceCode rule
+      if (rule.type !== rule.STYLE_RULE || rule.selectorText !== "div.sourceCode") {
+        j++;
+        continue;
+      }
+      var style = rule.style.cssText;
+      // check if color or background-color is set
+      if (rule.style.color === '' && rule.style.backgroundColor === '') {
+        j++;
+        continue;
+      }
+      // replace div.sourceCode by a pre.sourceCode rule
+      sheets[i].deleteRule(j);
+      sheets[i].insertRule('pre.sourceCode{' + style + '}', j);
+    }
+  }
+})();
+</script>
+
+
+
+
+<style type="text/css">body {
+background-color: #fff;
+margin: 1em auto;
+max-width: 700px;
+overflow: visible;
+padding-left: 2em;
+padding-right: 2em;
+font-family: "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
+font-size: 14px;
+line-height: 1.35;
+}
+#TOC {
+clear: both;
+margin: 0 0 10px 10px;
+padding: 4px;
+width: 400px;
+border: 1px solid #CCCCCC;
+border-radius: 5px;
+background-color: #f6f6f6;
+font-size: 13px;
+line-height: 1.3;
+}
+#TOC .toctitle {
+font-weight: bold;
+font-size: 15px;
+margin-left: 5px;
+}
+#TOC ul {
+padding-left: 40px;
+margin-left: -1.5em;
+margin-top: 5px;
+margin-bottom: 5px;
+}
+#TOC ul ul {
+margin-left: -2em;
+}
+#TOC li {
+line-height: 16px;
+}
+table {
+margin: 1em auto;
+border-width: 1px;
+border-color: #DDDDDD;
+border-style: outset;
+border-collapse: collapse;
+}
+table th {
+border-width: 2px;
+padding: 5px;
+border-style: inset;
+}
+table td {
+border-width: 1px;
+border-style: inset;
+line-height: 18px;
+padding: 5px 5px;
+}
+table, table th, table td {
+border-left-style: none;
+border-right-style: none;
+}
+table thead, table tr.even {
+background-color: #f7f7f7;
+}
+p {
+margin: 0.5em 0;
+}
+blockquote {
+background-color: #f6f6f6;
+padding: 0.25em 0.75em;
+}
+hr {
+border-style: solid;
+border: none;
+border-top: 1px solid #777;
+margin: 28px 0;
+}
+dl {
+margin-left: 0;
+}
+dl dd {
+margin-bottom: 13px;
+margin-left: 13px;
+}
+dl dt {
+font-weight: bold;
+}
+ul {
+margin-top: 0;
+}
+ul li {
+list-style: circle outside;
+}
+ul ul {
+margin-bottom: 0;
+}
+pre, code {
+background-color: #f7f7f7;
+border-radius: 3px;
+color: #333;
+white-space: pre-wrap; 
+}
+pre {
+border-radius: 3px;
+margin: 5px 0px 10px 0px;
+padding: 10px;
+}
+pre:not([class]) {
+background-color: #f7f7f7;
+}
+code {
+font-family: Consolas, Monaco, 'Courier New', monospace;
+font-size: 85%;
+}
+p > code, li > code {
+padding: 2px 0px;
+}
+div.figure {
+text-align: center;
+}
+img {
+background-color: #FFFFFF;
+padding: 2px;
+border: 1px solid #DDDDDD;
+border-radius: 3px;
+border: 1px solid #CCCCCC;
+margin: 0 5px;
+}
+h1 {
+margin-top: 0;
+font-size: 35px;
+line-height: 40px;
+}
+h2 {
+border-bottom: 4px solid #f7f7f7;
+padding-top: 10px;
+padding-bottom: 2px;
+font-size: 145%;
+}
+h3 {
+border-bottom: 2px solid #f7f7f7;
+padding-top: 10px;
+font-size: 120%;
+}
+h4 {
+border-bottom: 1px solid #f7f7f7;
+margin-left: 8px;
+font-size: 105%;
+}
+h5, h6 {
+border-bottom: 1px solid #ccc;
+font-size: 105%;
+}
+a {
+color: #0033dd;
+text-decoration: none;
+}
+a:hover {
+color: #6666ff; }
+a:visited {
+color: #800080; }
+a:visited:hover {
+color: #BB00BB; }
+a[href^="http:"] {
+text-decoration: underline; }
+a[href^="https:"] {
+text-decoration: underline; }
+
+code > span.kw { color: #555; font-weight: bold; } 
+code > span.dt { color: #902000; } 
+code > span.dv { color: #40a070; } 
+code > span.bn { color: #d14; } 
+code > span.fl { color: #d14; } 
+code > span.ch { color: #d14; } 
+code > span.st { color: #d14; } 
+code > span.co { color: #888888; font-style: italic; } 
+code > span.ot { color: #007020; } 
+code > span.al { color: #ff0000; font-weight: bold; } 
+code > span.fu { color: #900; font-weight: bold; } 
+code > span.er { color: #a61717; background-color: #e3d2d2; } 
+</style>
+
+
+
+
+</head>
+
+<body>
+
+
+
+
+<h1 class="title toc-ignore">Survival outcomes</h1>
+
+
+
+<div id="example" class="section level1">
+<h1>Example</h1>
+<p>The example uses the <code>cancer</code> data set from the survival
+package and compares survival, defined by the time variable
+<code>time</code> (recoded to years) and the event variable
+<code>status</code> (recoded to 1 = death, 0 = censored), by sex.</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" tabindex="-1"></a><span class="fu">library</span>(rifttable)</span>
+<span id="cb1-2"><a href="#cb1-2" tabindex="-1"></a><span class="fu">data</span>(cancer, <span class="at">package =</span> <span class="st">&quot;survival&quot;</span>)</span>
+<span id="cb1-3"><a href="#cb1-3" tabindex="-1"></a></span>
+<span id="cb1-4"><a href="#cb1-4" tabindex="-1"></a>cancer <span class="ot">&lt;-</span> cancer <span class="sc">|&gt;</span></span>
+<span id="cb1-5"><a href="#cb1-5" tabindex="-1"></a>  tibble<span class="sc">::</span><span class="fu">as_tibble</span>() <span class="sc">|&gt;</span></span>
+<span id="cb1-6"><a href="#cb1-6" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">mutate</span>(</span>
+<span id="cb1-7"><a href="#cb1-7" tabindex="-1"></a>    <span class="co"># The exposure (here, &#39;sex&#39;) must be categorical (a factor)</span></span>
+<span id="cb1-8"><a href="#cb1-8" tabindex="-1"></a>    <span class="at">sex =</span> <span class="fu">factor</span>(</span>
+<span id="cb1-9"><a href="#cb1-9" tabindex="-1"></a>      sex,</span>
+<span id="cb1-10"><a href="#cb1-10" tabindex="-1"></a>      <span class="at">levels =</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">2</span>,</span>
+<span id="cb1-11"><a href="#cb1-11" tabindex="-1"></a>      <span class="at">labels =</span> <span class="fu">c</span>(<span class="st">&quot;Male&quot;</span>, <span class="st">&quot;Female&quot;</span>)</span>
+<span id="cb1-12"><a href="#cb1-12" tabindex="-1"></a>    ),</span>
+<span id="cb1-13"><a href="#cb1-13" tabindex="-1"></a>    <span class="at">time =</span> time <span class="sc">/</span> <span class="fl">365.25</span>, <span class="co"># transform to years</span></span>
+<span id="cb1-14"><a href="#cb1-14" tabindex="-1"></a>    <span class="at">status =</span> status <span class="sc">-</span> <span class="dv">1</span></span>
+<span id="cb1-15"><a href="#cb1-15" tabindex="-1"></a>  )</span>
+<span id="cb1-16"><a href="#cb1-16" tabindex="-1"></a></span>
+<span id="cb1-17"><a href="#cb1-17" tabindex="-1"></a>tibble<span class="sc">::</span><span class="fu">tribble</span>(</span>
+<span id="cb1-18"><a href="#cb1-18" tabindex="-1"></a>  <span class="sc">~</span>label,                                  <span class="sc">~</span>type,</span>
+<span id="cb1-19"><a href="#cb1-19" tabindex="-1"></a>  <span class="st">&quot;**Absolute estimates**&quot;</span>,                <span class="st">&quot;&quot;</span>,</span>
+<span id="cb1-20"><a href="#cb1-20" tabindex="-1"></a>  <span class="st">&quot;*Counts and sums*&quot;</span>,                     <span class="st">&quot;&quot;</span>,</span>
+<span id="cb1-21"><a href="#cb1-21" tabindex="-1"></a>  <span class="st">&quot;  Observations, *N*&quot;</span>,                   <span class="st">&quot;total&quot;</span>,</span>
+<span id="cb1-22"><a href="#cb1-22" tabindex="-1"></a>  <span class="st">&quot;  Events, *n*&quot;</span>,                         <span class="st">&quot;events&quot;</span>,</span>
+<span id="cb1-23"><a href="#cb1-23" tabindex="-1"></a>  <span class="st">&quot;  Events/observations&quot;</span>,                 <span class="st">&quot;events/total&quot;</span>,</span>
+<span id="cb1-24"><a href="#cb1-24" tabindex="-1"></a>  <span class="st">&quot;  Events/person-years&quot;</span>,                 <span class="st">&quot;events/time&quot;</span>,</span>
+<span id="cb1-25"><a href="#cb1-25" tabindex="-1"></a>  <span class="st">&quot;*Follow-up*&quot;</span>,                           <span class="st">&quot;&quot;</span>,</span>
+<span id="cb1-26"><a href="#cb1-26" tabindex="-1"></a>  <span class="st">&quot;  Person-years&quot;</span>,                        <span class="st">&quot;time&quot;</span>,</span>
+<span id="cb1-27"><a href="#cb1-27" tabindex="-1"></a>  <span class="st">&quot;  Maximum follow-up, years&quot;</span>,            <span class="st">&quot;maxfu&quot;</span>,</span>
+<span id="cb1-28"><a href="#cb1-28" tabindex="-1"></a>  <span class="st">&quot;  Median follow-up, years&quot;</span>,             <span class="st">&quot;medfu&quot;</span>,</span>
+<span id="cb1-29"><a href="#cb1-29" tabindex="-1"></a>  <span class="st">&quot;  Median follow-up (IQR), years&quot;</span>,       <span class="st">&quot;medfu (iqr)&quot;</span>,</span>
+<span id="cb1-30"><a href="#cb1-30" tabindex="-1"></a>  <span class="st">&quot;*Rates*&quot;</span>,                               <span class="st">&quot;&quot;</span>,</span>
+<span id="cb1-31"><a href="#cb1-31" tabindex="-1"></a>  <span class="st">&quot;  Rate per 1000 person-years&quot;</span>,          <span class="st">&quot;rate&quot;</span>,</span>
+<span id="cb1-32"><a href="#cb1-32" tabindex="-1"></a>  <span class="st">&quot;  Rate per 1000 person-years (95% CI)&quot;</span>, <span class="st">&quot;rate (ci)&quot;</span>,</span>
+<span id="cb1-33"><a href="#cb1-33" tabindex="-1"></a>  <span class="st">&quot;  Events/py (rate per 1000 py)&quot;</span>,        <span class="st">&quot;events/time (rate)&quot;</span>,</span>
+<span id="cb1-34"><a href="#cb1-34" tabindex="-1"></a>  <span class="st">&quot;*Risks*&quot;</span>,                               <span class="st">&quot;&quot;</span>,</span>
+<span id="cb1-35"><a href="#cb1-35" tabindex="-1"></a>  <span class="st">&quot;  1-year survival&quot;</span>,                     <span class="st">&quot;surv&quot;</span>,</span>
+<span id="cb1-36"><a href="#cb1-36" tabindex="-1"></a>  <span class="st">&quot;  1-year survival (95% CI)&quot;</span>,            <span class="st">&quot;surv (ci)&quot;</span>,</span>
+<span id="cb1-37"><a href="#cb1-37" tabindex="-1"></a>  <span class="st">&quot;  1-year risk/cumulative incidence&quot;</span>,    <span class="st">&quot;cuminc&quot;</span>,</span>
+<span id="cb1-38"><a href="#cb1-38" tabindex="-1"></a>  <span class="st">&quot;  1-year risk (95% CI)&quot;</span>,                <span class="st">&quot;cuminc (ci)&quot;</span>,</span>
+<span id="cb1-39"><a href="#cb1-39" tabindex="-1"></a>  <span class="st">&quot;  Median survival, years&quot;</span>,              <span class="st">&quot;medsurv&quot;</span>,</span>
+<span id="cb1-40"><a href="#cb1-40" tabindex="-1"></a>  <span class="st">&quot;  Median survival (95 CI), years&quot;</span>,      <span class="st">&quot;medsurv (ci)&quot;</span>,</span>
+<span id="cb1-41"><a href="#cb1-41" tabindex="-1"></a>  <span class="st">&quot;&quot;</span>,                                      <span class="st">&quot;&quot;</span>,</span>
+<span id="cb1-42"><a href="#cb1-42" tabindex="-1"></a>  <span class="st">&quot;**Comparative estimates**&quot;</span>,             <span class="st">&quot;&quot;</span>,</span>
+<span id="cb1-43"><a href="#cb1-43" tabindex="-1"></a>  <span class="st">&quot;  1-year survival difference&quot;</span>,          <span class="st">&quot;survdiff&quot;</span>,</span>
+<span id="cb1-44"><a href="#cb1-44" tabindex="-1"></a>  <span class="st">&quot;  1-year risk difference&quot;</span>,              <span class="st">&quot;cumincdiff&quot;</span>,</span>
+<span id="cb1-45"><a href="#cb1-45" tabindex="-1"></a>  <span class="st">&quot;  1-year survival ratio&quot;</span>,               <span class="st">&quot;survratio&quot;</span>,</span>
+<span id="cb1-46"><a href="#cb1-46" tabindex="-1"></a>  <span class="st">&quot;  1-year risk ratio&quot;</span>,                   <span class="st">&quot;cumincratio&quot;</span>,</span>
+<span id="cb1-47"><a href="#cb1-47" tabindex="-1"></a>  <span class="st">&quot;  Hazard ratio (95% CI)&quot;</span>,               <span class="st">&quot;hr&quot;</span></span>
+<span id="cb1-48"><a href="#cb1-48" tabindex="-1"></a>) <span class="sc">|&gt;</span></span>
+<span id="cb1-49"><a href="#cb1-49" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">mutate</span>(</span>
+<span id="cb1-50"><a href="#cb1-50" tabindex="-1"></a>    <span class="at">time =</span> <span class="st">&quot;time&quot;</span>,</span>
+<span id="cb1-51"><a href="#cb1-51" tabindex="-1"></a>    <span class="at">event =</span> <span class="st">&quot;status&quot;</span>,</span>
+<span id="cb1-52"><a href="#cb1-52" tabindex="-1"></a>    <span class="at">exposure =</span> <span class="st">&quot;sex&quot;</span>,</span>
+<span id="cb1-53"><a href="#cb1-53" tabindex="-1"></a>    <span class="at">arguments =</span> <span class="fu">list</span>(<span class="fu">list</span>(<span class="at">timepoint =</span> <span class="dv">1</span>))</span>
+<span id="cb1-54"><a href="#cb1-54" tabindex="-1"></a>  ) <span class="sc">|&gt;</span></span>
+<span id="cb1-55"><a href="#cb1-55" tabindex="-1"></a>  <span class="fu">rifttable</span>(</span>
+<span id="cb1-56"><a href="#cb1-56" tabindex="-1"></a>    <span class="at">data =</span> cancer,</span>
+<span id="cb1-57"><a href="#cb1-57" tabindex="-1"></a>    <span class="at">overall =</span> <span class="cn">TRUE</span></span>
+<span id="cb1-58"><a href="#cb1-58" tabindex="-1"></a>  ) <span class="sc">|&gt;</span></span>
+<span id="cb1-59"><a href="#cb1-59" tabindex="-1"></a>  <span class="fu">rt_gt</span>()</span></code></pre></div>
+<div id="rifttable" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#rifttable table {
+font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
+-webkit-font-smoothing: antialiased;
+-moz-osx-font-smoothing: grayscale;
+}
+#rifttable thead, #rifttable tbody, #rifttable tfoot, #rifttable tr, #rifttable td, #rifttable th {
+border-style: none;
+}
+#rifttable p {
+margin: 0;
+padding: 0;
+}
+#rifttable .gt_table {
+display: table;
+border-collapse: collapse;
+line-height: normal;
+margin-left: auto;
+margin-right: auto;
+color: #333333;
+font-size: 16px;
+font-weight: normal;
+font-style: normal;
+background-color: #FFFFFF;
+width: auto;
+border-top-style: none;
+border-top-width: 2px;
+border-top-color: #A8A8A8;
+border-right-style: none;
+border-right-width: 2px;
+border-right-color: #D3D3D3;
+border-bottom-style: solid;
+border-bottom-width: 2px;
+border-bottom-color: #A8A8A8;
+border-left-style: none;
+border-left-width: 2px;
+border-left-color: #D3D3D3;
+}
+#rifttable .gt_caption {
+padding-top: 4px;
+padding-bottom: 4px;
+}
+#rifttable .gt_title {
+color: #333333;
+font-size: 125%;
+font-weight: initial;
+padding-top: 4px;
+padding-bottom: 4px;
+padding-left: 5px;
+padding-right: 5px;
+border-bottom-color: #FFFFFF;
+border-bottom-width: 0;
+}
+#rifttable .gt_subtitle {
+color: #333333;
+font-size: 85%;
+font-weight: initial;
+padding-top: 3px;
+padding-bottom: 5px;
+padding-left: 5px;
+padding-right: 5px;
+border-top-color: #FFFFFF;
+border-top-width: 0;
+}
+#rifttable .gt_heading {
+background-color: #FFFFFF;
+text-align: center;
+border-bottom-color: #FFFFFF;
+border-left-style: none;
+border-left-width: 1px;
+border-left-color: #D3D3D3;
+border-right-style: none;
+border-right-width: 1px;
+border-right-color: #D3D3D3;
+}
+#rifttable .gt_bottom_border {
+border-bottom-style: solid;
+border-bottom-width: 2px;
+border-bottom-color: #D3D3D3;
+}
+#rifttable .gt_col_headings {
+border-top-style: none;
+border-top-width: 2px;
+border-top-color: #D3D3D3;
+border-bottom-style: solid;
+border-bottom-width: 2px;
+border-bottom-color: #D3D3D3;
+border-left-style: none;
+border-left-width: 1px;
+border-left-color: #D3D3D3;
+border-right-style: none;
+border-right-width: 1px;
+border-right-color: #D3D3D3;
+}
+#rifttable .gt_col_heading {
+color: #333333;
+background-color: #FFFFFF;
+font-size: 100%;
+font-weight: bold;
+text-transform: inherit;
+border-left-style: none;
+border-left-width: 1px;
+border-left-color: #D3D3D3;
+border-right-style: none;
+border-right-width: 1px;
+border-right-color: #D3D3D3;
+vertical-align: bottom;
+padding-top: 5px;
+padding-bottom: 6px;
+padding-left: 5px;
+padding-right: 5px;
+overflow-x: hidden;
+}
+#rifttable .gt_column_spanner_outer {
+color: #333333;
+background-color: #FFFFFF;
+font-size: 100%;
+font-weight: bold;
+text-transform: inherit;
+padding-top: 0;
+padding-bottom: 0;
+padding-left: 4px;
+padding-right: 4px;
+}
+#rifttable .gt_column_spanner_outer:first-child {
+padding-left: 0;
+}
+#rifttable .gt_column_spanner_outer:last-child {
+padding-right: 0;
+}
+#rifttable .gt_column_spanner {
+border-bottom-style: solid;
+border-bottom-width: 2px;
+border-bottom-color: #D3D3D3;
+vertical-align: bottom;
+padding-top: 5px;
+padding-bottom: 5px;
+overflow-x: hidden;
+display: inline-block;
+width: 100%;
+}
+#rifttable .gt_spanner_row {
+border-bottom-style: hidden;
+}
+#rifttable .gt_group_heading {
+padding-top: 8px;
+padding-bottom: 8px;
+padding-left: 5px;
+padding-right: 5px;
+color: #333333;
+background-color: #FFFFFF;
+font-size: 100%;
+font-weight: initial;
+text-transform: inherit;
+border-top-style: solid;
+border-top-width: 2px;
+border-top-color: #D3D3D3;
+border-bottom-style: solid;
+border-bottom-width: 2px;
+border-bottom-color: #D3D3D3;
+border-left-style: none;
+border-left-width: 1px;
+border-left-color: #D3D3D3;
+border-right-style: none;
+border-right-width: 1px;
+border-right-color: #D3D3D3;
+vertical-align: middle;
+text-align: left;
+}
+#rifttable .gt_empty_group_heading {
+padding: 0.5px;
+color: #333333;
+background-color: #FFFFFF;
+font-size: 100%;
+font-weight: initial;
+border-top-style: solid;
+border-top-width: 2px;
+border-top-color: #D3D3D3;
+border-bottom-style: solid;
+border-bottom-width: 2px;
+border-bottom-color: #D3D3D3;
+vertical-align: middle;
+}
+#rifttable .gt_from_md > :first-child {
+margin-top: 0;
+}
+#rifttable .gt_from_md > :last-child {
+margin-bottom: 0;
+}
+#rifttable .gt_row {
+padding-top: 0px;
+padding-bottom: 0px;
+padding-left: 5px;
+padding-right: 5px;
+margin: 10px;
+border-top-style: solid;
+border-top-width: 1px;
+border-top-color: #D3D3D3;
+border-left-style: none;
+border-left-width: 1px;
+border-left-color: #D3D3D3;
+border-right-style: none;
+border-right-width: 1px;
+border-right-color: #D3D3D3;
+vertical-align: middle;
+overflow-x: hidden;
+}
+#rifttable .gt_stub {
+color: #333333;
+background-color: #FFFFFF;
+font-size: 100%;
+font-weight: initial;
+text-transform: inherit;
+border-right-style: solid;
+border-right-width: 2px;
+border-right-color: #D3D3D3;
+padding-left: 5px;
+padding-right: 5px;
+}
+#rifttable .gt_stub_row_group {
+color: #333333;
+background-color: #FFFFFF;
+font-size: 100%;
+font-weight: initial;
+text-transform: inherit;
+border-right-style: solid;
+border-right-width: 2px;
+border-right-color: #D3D3D3;
+padding-left: 5px;
+padding-right: 5px;
+vertical-align: top;
+}
+#rifttable .gt_row_group_first td {
+border-top-width: 2px;
+}
+#rifttable .gt_row_group_first th {
+border-top-width: 2px;
+}
+#rifttable .gt_summary_row {
+color: #333333;
+background-color: #FFFFFF;
+text-transform: inherit;
+padding-top: 8px;
+padding-bottom: 8px;
+padding-left: 5px;
+padding-right: 5px;
+}
+#rifttable .gt_first_summary_row {
+border-top-style: solid;
+border-top-color: #D3D3D3;
+}
+#rifttable .gt_first_summary_row.thick {
+border-top-width: 2px;
+}
+#rifttable .gt_last_summary_row {
+padding-top: 8px;
+padding-bottom: 8px;
+padding-left: 5px;
+padding-right: 5px;
+border-bottom-style: solid;
+border-bottom-width: 2px;
+border-bottom-color: #D3D3D3;
+}
+#rifttable .gt_grand_summary_row {
+color: #333333;
+background-color: #FFFFFF;
+text-transform: inherit;
+padding-top: 8px;
+padding-bottom: 8px;
+padding-left: 5px;
+padding-right: 5px;
+}
+#rifttable .gt_first_grand_summary_row {
+padding-top: 8px;
+padding-bottom: 8px;
+padding-left: 5px;
+padding-right: 5px;
+border-top-style: double;
+border-top-width: 6px;
+border-top-color: #D3D3D3;
+}
+#rifttable .gt_last_grand_summary_row_top {
+padding-top: 8px;
+padding-bottom: 8px;
+padding-left: 5px;
+padding-right: 5px;
+border-bottom-style: double;
+border-bottom-width: 6px;
+border-bottom-color: #D3D3D3;
+}
+#rifttable .gt_striped {
+background-color: rgba(128, 128, 128, 0.05);
+}
+#rifttable .gt_table_body {
+border-top-style: none;
+border-top-width: 2px;
+border-top-color: #D3D3D3;
+border-bottom-style: solid;
+border-bottom-width: 2px;
+border-bottom-color: #D3D3D3;
+}
+#rifttable .gt_footnotes {
+color: #333333;
+background-color: #FFFFFF;
+border-bottom-style: none;
+border-bottom-width: 2px;
+border-bottom-color: #D3D3D3;
+border-left-style: none;
+border-left-width: 2px;
+border-left-color: #D3D3D3;
+border-right-style: none;
+border-right-width: 2px;
+border-right-color: #D3D3D3;
+}
+#rifttable .gt_footnote {
+margin: 0px;
+font-size: 90%;
+padding-top: 4px;
+padding-bottom: 4px;
+padding-left: 5px;
+padding-right: 5px;
+}
+#rifttable .gt_sourcenotes {
+color: #333333;
+background-color: #FFFFFF;
+border-bottom-style: none;
+border-bottom-width: 2px;
+border-bottom-color: #D3D3D3;
+border-left-style: none;
+border-left-width: 2px;
+border-left-color: #D3D3D3;
+border-right-style: none;
+border-right-width: 2px;
+border-right-color: #D3D3D3;
+}
+#rifttable .gt_sourcenote {
+font-size: 90%;
+padding-top: 4px;
+padding-bottom: 4px;
+padding-left: 5px;
+padding-right: 5px;
+}
+#rifttable .gt_left {
+text-align: left;
+}
+#rifttable .gt_center {
+text-align: center;
+}
+#rifttable .gt_right {
+text-align: right;
+font-variant-numeric: tabular-nums;
+}
+#rifttable .gt_font_normal {
+font-weight: normal;
+}
+#rifttable .gt_font_bold {
+font-weight: bold;
+}
+#rifttable .gt_font_italic {
+font-style: italic;
+}
+#rifttable .gt_super {
+font-size: 65%;
+}
+#rifttable .gt_footnote_marks {
+font-size: 75%;
+vertical-align: 0.4em;
+position: initial;
+}
+#rifttable .gt_asterisk {
+font-size: 100%;
+vertical-align: 0;
+}
+#rifttable .gt_indent_1 {
+text-indent: 5px;
+}
+#rifttable .gt_indent_2 {
+text-indent: 10px;
+}
+#rifttable .gt_indent_3 {
+text-indent: 15px;
+}
+#rifttable .gt_indent_4 {
+text-indent: 20px;
+}
+#rifttable .gt_indent_5 {
+text-indent: 25px;
+}
+#rifttable .katex-display {
+display: inline-flex !important;
+margin-bottom: 0.75em !important;
+}
+#rifttable div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
+height: 0px !important;
+}
+</style>
+<table class="gt_table" data-quarto-disable-processing="false" data-quarto-bootstrap="false">
+  <thead>
+    <tr class="gt_col_headings">
+      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1" style="text-align: left; vertical-align: bottom;" scope="col" id="Summary">Summary</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" style="text-align: left; vertical-align: bottom;" scope="col" id="Overall">Overall</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1" style="text-align: left; vertical-align: bottom;" scope="col" id="Male">Male</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" style="text-align: left; vertical-align: bottom;" scope="col" id="Female">Female</th>
+    </tr>
+  </thead>
+  <tbody class="gt_table_body">
+    <tr><td headers="Summary" class="gt_row gt_left" style="text-align: left; vertical-align: top;"><span class="gt_from_md"><strong>Absolute estimates</strong></span></td>
+<td headers="Overall" class="gt_row gt_right" style="text-align: left; vertical-align: top;"></td>
+<td headers="Male" class="gt_row gt_left" style="text-align: left; vertical-align: top;"></td>
+<td headers="Female" class="gt_row gt_right" style="text-align: left; vertical-align: top;"></td></tr>
+    <tr><td headers="Summary" class="gt_row gt_left" style="text-align: left; vertical-align: top;"><span class="gt_from_md"><em>Counts and sums</em></span></td>
+<td headers="Overall" class="gt_row gt_right" style="text-align: left; vertical-align: top;"></td>
+<td headers="Male" class="gt_row gt_left" style="text-align: left; vertical-align: top;"></td>
+<td headers="Female" class="gt_row gt_right" style="text-align: left; vertical-align: top;"></td></tr>
+    <tr><td headers="Summary" class="gt_row gt_left" style="text-align: left; vertical-align: top; text-indent: 10px; border-top-width: 0; border-top-style: solid; border-top-color: #000000;"><span class="gt_from_md">Observations, <em>N</em></span></td>
+<td headers="Overall" class="gt_row gt_right" style="text-align: left; vertical-align: top; border-top-width: 0; border-top-style: solid; border-top-color: #000000;">228</td>
+<td headers="Male" class="gt_row gt_left" style="text-align: left; vertical-align: top; border-top-width: 0; border-top-style: solid; border-top-color: #000000;">138</td>
+<td headers="Female" class="gt_row gt_right" style="text-align: left; vertical-align: top; border-top-width: 0; border-top-style: solid; border-top-color: #000000;">90</td></tr>
+    <tr><td headers="Summary" class="gt_row gt_left" style="text-align: left; vertical-align: top; text-indent: 10px; border-top-width: 0; border-top-style: solid; border-top-color: #000000;"><span class="gt_from_md">Events, <em>n</em></span></td>
+<td headers="Overall" class="gt_row gt_right" style="text-align: left; vertical-align: top; border-top-width: 0; border-top-style: solid; border-top-color: #000000;">165</td>
+<td headers="Male" class="gt_row gt_left" style="text-align: left; vertical-align: top; border-top-width: 0; border-top-style: solid; border-top-color: #000000;">112</td>
+<td headers="Female" class="gt_row gt_right" style="text-align: left; vertical-align: top; border-top-width: 0; border-top-style: solid; border-top-color: #000000;">53</td></tr>
+    <tr><td headers="Summary" class="gt_row gt_left" style="text-align: left; vertical-align: top; text-indent: 10px; border-top-width: 0; border-top-style: solid; border-top-color: #000000;"><span class="gt_from_md">Events/observations</span></td>
+<td headers="Overall" class="gt_row gt_right" style="text-align: left; vertical-align: top; border-top-width: 0; border-top-style: solid; border-top-color: #000000;">165/228</td>
+<td headers="Male" class="gt_row gt_left" style="text-align: left; vertical-align: top; border-top-width: 0; border-top-style: solid; border-top-color: #000000;">112/138</td>
+<td headers="Female" class="gt_row gt_right" style="text-align: left; vertical-align: top; border-top-width: 0; border-top-style: solid; border-top-color: #000000;">53/90</td></tr>
+    <tr><td headers="Summary" class="gt_row gt_left" style="text-align: left; vertical-align: top; text-indent: 10px; border-top-width: 0; border-top-style: solid; border-top-color: #000000;"><span class="gt_from_md">Events/person-years</span></td>
+<td headers="Overall" class="gt_row gt_right" style="text-align: left; vertical-align: top; border-top-width: 0; border-top-style: solid; border-top-color: #000000;">165/191</td>
+<td headers="Male" class="gt_row gt_left" style="text-align: left; vertical-align: top; border-top-width: 0; border-top-style: solid; border-top-color: #000000;">112/107</td>
+<td headers="Female" class="gt_row gt_right" style="text-align: left; vertical-align: top; border-top-width: 0; border-top-style: solid; border-top-color: #000000;">53/84</td></tr>
+    <tr><td headers="Summary" class="gt_row gt_left" style="text-align: left; vertical-align: top;"><span class="gt_from_md"><em>Follow-up</em></span></td>
+<td headers="Overall" class="gt_row gt_right" style="text-align: left; vertical-align: top;"></td>
+<td headers="Male" class="gt_row gt_left" style="text-align: left; vertical-align: top;"></td>
+<td headers="Female" class="gt_row gt_right" style="text-align: left; vertical-align: top;"></td></tr>
+    <tr><td headers="Summary" class="gt_row gt_left" style="text-align: left; vertical-align: top; text-indent: 10px; border-top-width: 0; border-top-style: solid; border-top-color: #000000;"><span class="gt_from_md">Person-years</span></td>
+<td headers="Overall" class="gt_row gt_right" style="text-align: left; vertical-align: top; border-top-width: 0; border-top-style: solid; border-top-color: #000000;">191</td>
+<td headers="Male" class="gt_row gt_left" style="text-align: left; vertical-align: top; border-top-width: 0; border-top-style: solid; border-top-color: #000000;">107</td>
+<td headers="Female" class="gt_row gt_right" style="text-align: left; vertical-align: top; border-top-width: 0; border-top-style: solid; border-top-color: #000000;">84</td></tr>
+    <tr><td headers="Summary" class="gt_row gt_left" style="text-align: left; vertical-align: top; text-indent: 10px; border-top-width: 0; border-top-style: solid; border-top-color: #000000;"><span class="gt_from_md">Maximum follow-up, years</span></td>
+<td headers="Overall" class="gt_row gt_right" style="text-align: left; vertical-align: top; border-top-width: 0; border-top-style: solid; border-top-color: #000000;">2.80</td>
+<td headers="Male" class="gt_row gt_left" style="text-align: left; vertical-align: top; border-top-width: 0; border-top-style: solid; border-top-color: #000000;">2.80</td>
+<td headers="Female" class="gt_row gt_right" style="text-align: left; vertical-align: top; border-top-width: 0; border-top-style: solid; border-top-color: #000000;">2.64</td></tr>
+    <tr><td headers="Summary" class="gt_row gt_left" style="text-align: left; vertical-align: top; text-indent: 10px; border-top-width: 0; border-top-style: solid; border-top-color: #000000;"><span class="gt_from_md">Median follow-up, years</span></td>
+<td headers="Overall" class="gt_row gt_right" style="text-align: left; vertical-align: top; border-top-width: 0; border-top-style: solid; border-top-color: #000000;">1.61</td>
+<td headers="Male" class="gt_row gt_left" style="text-align: left; vertical-align: top; border-top-width: 0; border-top-style: solid; border-top-color: #000000;">2.30</td>
+<td headers="Female" class="gt_row gt_right" style="text-align: left; vertical-align: top; border-top-width: 0; border-top-style: solid; border-top-color: #000000;">1.45</td></tr>
+    <tr><td headers="Summary" class="gt_row gt_left" style="text-align: left; vertical-align: top; text-indent: 10px; border-top-width: 0; border-top-style: solid; border-top-color: #000000;"><span class="gt_from_md">Median follow-up (IQR), years</span></td>
+<td headers="Overall" class="gt_row gt_right" style="text-align: left; vertical-align: top; border-top-width: 0; border-top-style: solid; border-top-color: #000000;">1.61 (0.82, 2.64)</td>
+<td headers="Male" class="gt_row gt_left" style="text-align: left; vertical-align: top; border-top-width: 0; border-top-style: solid; border-top-color: #000000;">2.30 (1.11, 2.77)</td>
+<td headers="Female" class="gt_row gt_right" style="text-align: left; vertical-align: top; border-top-width: 0; border-top-style: solid; border-top-color: #000000;">1.45 (0.76, 2.25)</td></tr>
+    <tr><td headers="Summary" class="gt_row gt_left" style="text-align: left; vertical-align: top;"><span class="gt_from_md"><em>Rates</em></span></td>
+<td headers="Overall" class="gt_row gt_right" style="text-align: left; vertical-align: top;"></td>
+<td headers="Male" class="gt_row gt_left" style="text-align: left; vertical-align: top;"></td>
+<td headers="Female" class="gt_row gt_right" style="text-align: left; vertical-align: top;"></td></tr>
+    <tr><td headers="Summary" class="gt_row gt_left" style="text-align: left; vertical-align: top; text-indent: 10px; border-top-width: 0; border-top-style: solid; border-top-color: #000000;"><span class="gt_from_md">Rate per 1000 person-years</span></td>
+<td headers="Overall" class="gt_row gt_right" style="text-align: left; vertical-align: top; border-top-width: 0; border-top-style: solid; border-top-color: #000000;">866.0</td>
+<td headers="Male" class="gt_row gt_left" style="text-align: left; vertical-align: top; border-top-width: 0; border-top-style: solid; border-top-color: #000000;">1046.6</td>
+<td headers="Female" class="gt_row gt_right" style="text-align: left; vertical-align: top; border-top-width: 0; border-top-style: solid; border-top-color: #000000;">634.6</td></tr>
+    <tr><td headers="Summary" class="gt_row gt_left" style="text-align: left; vertical-align: top; text-indent: 10px; border-top-width: 0; border-top-style: solid; border-top-color: #000000;"><span class="gt_from_md">Rate per 1000 person-years (95% CI)</span></td>
+<td headers="Overall" class="gt_row gt_right" style="text-align: left; vertical-align: top; border-top-width: 0; border-top-style: solid; border-top-color: #000000;">866.0 (743.4, 1008.7)</td>
+<td headers="Male" class="gt_row gt_left" style="text-align: left; vertical-align: top; border-top-width: 0; border-top-style: solid; border-top-color: #000000;">1046.6 (869.7, 1259.6)</td>
+<td headers="Female" class="gt_row gt_right" style="text-align: left; vertical-align: top; border-top-width: 0; border-top-style: solid; border-top-color: #000000;">634.6 (484.8, 830.6)</td></tr>
+    <tr><td headers="Summary" class="gt_row gt_left" style="text-align: left; vertical-align: top; text-indent: 10px; border-top-width: 0; border-top-style: solid; border-top-color: #000000;"><span class="gt_from_md">Events/py (rate per 1000 py)</span></td>
+<td headers="Overall" class="gt_row gt_right" style="text-align: left; vertical-align: top; border-top-width: 0; border-top-style: solid; border-top-color: #000000;">165/191 (866.0)</td>
+<td headers="Male" class="gt_row gt_left" style="text-align: left; vertical-align: top; border-top-width: 0; border-top-style: solid; border-top-color: #000000;">112/107 (1046.6)</td>
+<td headers="Female" class="gt_row gt_right" style="text-align: left; vertical-align: top; border-top-width: 0; border-top-style: solid; border-top-color: #000000;">53/84 (634.6)</td></tr>
+    <tr><td headers="Summary" class="gt_row gt_left" style="text-align: left; vertical-align: top;"><span class="gt_from_md"><em>Risks</em></span></td>
+<td headers="Overall" class="gt_row gt_right" style="text-align: left; vertical-align: top;"></td>
+<td headers="Male" class="gt_row gt_left" style="text-align: left; vertical-align: top;"></td>
+<td headers="Female" class="gt_row gt_right" style="text-align: left; vertical-align: top;"></td></tr>
+    <tr><td headers="Summary" class="gt_row gt_left" style="text-align: left; vertical-align: top; text-indent: 10px; border-top-width: 0; border-top-style: solid; border-top-color: #000000;"><span class="gt_from_md">1-year survival</span></td>
+<td headers="Overall" class="gt_row gt_right" style="text-align: left; vertical-align: top; border-top-width: 0; border-top-style: solid; border-top-color: #000000;">0.41</td>
+<td headers="Male" class="gt_row gt_left" style="text-align: left; vertical-align: top; border-top-width: 0; border-top-style: solid; border-top-color: #000000;">0.34</td>
+<td headers="Female" class="gt_row gt_right" style="text-align: left; vertical-align: top; border-top-width: 0; border-top-style: solid; border-top-color: #000000;">0.53</td></tr>
+    <tr><td headers="Summary" class="gt_row gt_left" style="text-align: left; vertical-align: top; text-indent: 10px; border-top-width: 0; border-top-style: solid; border-top-color: #000000;"><span class="gt_from_md">1-year survival (95% CI)</span></td>
+<td headers="Overall" class="gt_row gt_right" style="text-align: left; vertical-align: top; border-top-width: 0; border-top-style: solid; border-top-color: #000000;">0.41 (0.34, 0.49)</td>
+<td headers="Male" class="gt_row gt_left" style="text-align: left; vertical-align: top; border-top-width: 0; border-top-style: solid; border-top-color: #000000;">0.34 (0.26, 0.43)</td>
+<td headers="Female" class="gt_row gt_right" style="text-align: left; vertical-align: top; border-top-width: 0; border-top-style: solid; border-top-color: #000000;">0.53 (0.42, 0.66)</td></tr>
+    <tr><td headers="Summary" class="gt_row gt_left" style="text-align: left; vertical-align: top; text-indent: 10px; border-top-width: 0; border-top-style: solid; border-top-color: #000000;"><span class="gt_from_md">1-year risk/cumulative incidence</span></td>
+<td headers="Overall" class="gt_row gt_right" style="text-align: left; vertical-align: top; border-top-width: 0; border-top-style: solid; border-top-color: #000000;">0.59</td>
+<td headers="Male" class="gt_row gt_left" style="text-align: left; vertical-align: top; border-top-width: 0; border-top-style: solid; border-top-color: #000000;">0.66</td>
+<td headers="Female" class="gt_row gt_right" style="text-align: left; vertical-align: top; border-top-width: 0; border-top-style: solid; border-top-color: #000000;">0.47</td></tr>
+    <tr><td headers="Summary" class="gt_row gt_left" style="text-align: left; vertical-align: top; text-indent: 10px; border-top-width: 0; border-top-style: solid; border-top-color: #000000;"><span class="gt_from_md">1-year risk (95% CI)</span></td>
+<td headers="Overall" class="gt_row gt_right" style="text-align: left; vertical-align: top; border-top-width: 0; border-top-style: solid; border-top-color: #000000;">0.59 (0.51, 0.66)</td>
+<td headers="Male" class="gt_row gt_left" style="text-align: left; vertical-align: top; border-top-width: 0; border-top-style: solid; border-top-color: #000000;">0.66 (0.57, 0.74)</td>
+<td headers="Female" class="gt_row gt_right" style="text-align: left; vertical-align: top; border-top-width: 0; border-top-style: solid; border-top-color: #000000;">0.47 (0.34, 0.58)</td></tr>
+    <tr><td headers="Summary" class="gt_row gt_left" style="text-align: left; vertical-align: top; text-indent: 10px; border-top-width: 0; border-top-style: solid; border-top-color: #000000;"><span class="gt_from_md">Median survival, years</span></td>
+<td headers="Overall" class="gt_row gt_right" style="text-align: left; vertical-align: top; border-top-width: 0; border-top-style: solid; border-top-color: #000000;">0.85</td>
+<td headers="Male" class="gt_row gt_left" style="text-align: left; vertical-align: top; border-top-width: 0; border-top-style: solid; border-top-color: #000000;">0.74</td>
+<td headers="Female" class="gt_row gt_right" style="text-align: left; vertical-align: top; border-top-width: 0; border-top-style: solid; border-top-color: #000000;">1.17</td></tr>
+    <tr><td headers="Summary" class="gt_row gt_left" style="text-align: left; vertical-align: top; text-indent: 10px; border-top-width: 0; border-top-style: solid; border-top-color: #000000;"><span class="gt_from_md">Median survival (95 CI), years</span></td>
+<td headers="Overall" class="gt_row gt_right" style="text-align: left; vertical-align: top; border-top-width: 0; border-top-style: solid; border-top-color: #000000;">0.85 (0.78, 0.99)</td>
+<td headers="Male" class="gt_row gt_left" style="text-align: left; vertical-align: top; border-top-width: 0; border-top-style: solid; border-top-color: #000000;">0.74 (0.58, 0.85)</td>
+<td headers="Female" class="gt_row gt_right" style="text-align: left; vertical-align: top; border-top-width: 0; border-top-style: solid; border-top-color: #000000;">1.17 (0.95, 1.51)</td></tr>
+    <tr><td headers="Summary" class="gt_row gt_left" style="text-align: left; vertical-align: top; text-indent: 10px; border-top-width: 0; border-top-style: solid; border-top-color: #000000;"><span class="gt_from_md"></span></td>
+<td headers="Overall" class="gt_row gt_right" style="text-align: left; vertical-align: top; border-top-width: 0; border-top-style: solid; border-top-color: #000000;"></td>
+<td headers="Male" class="gt_row gt_left" style="text-align: left; vertical-align: top; border-top-width: 0; border-top-style: solid; border-top-color: #000000;"></td>
+<td headers="Female" class="gt_row gt_right" style="text-align: left; vertical-align: top; border-top-width: 0; border-top-style: solid; border-top-color: #000000;"></td></tr>
+    <tr><td headers="Summary" class="gt_row gt_left" style="text-align: left; vertical-align: top;"><span class="gt_from_md"><strong>Comparative estimates</strong></span></td>
+<td headers="Overall" class="gt_row gt_right" style="text-align: left; vertical-align: top;"></td>
+<td headers="Male" class="gt_row gt_left" style="text-align: left; vertical-align: top;"></td>
+<td headers="Female" class="gt_row gt_right" style="text-align: left; vertical-align: top;"></td></tr>
+    <tr><td headers="Summary" class="gt_row gt_left" style="text-align: left; vertical-align: top; text-indent: 10px; border-top-width: 0; border-top-style: solid; border-top-color: #000000;"><span class="gt_from_md">1-year survival difference</span></td>
+<td headers="Overall" class="gt_row gt_right" style="text-align: left; vertical-align: top; border-top-width: 0; border-top-style: solid; border-top-color: #000000;"></td>
+<td headers="Male" class="gt_row gt_left" style="text-align: left; vertical-align: top; border-top-width: 0; border-top-style: solid; border-top-color: #000000;">0 (reference)</td>
+<td headers="Female" class="gt_row gt_right" style="text-align: left; vertical-align: top; border-top-width: 0; border-top-style: solid; border-top-color: #000000;">0.19 (0.05, 0.34)</td></tr>
+    <tr><td headers="Summary" class="gt_row gt_left" style="text-align: left; vertical-align: top; text-indent: 10px; border-top-width: 0; border-top-style: solid; border-top-color: #000000;"><span class="gt_from_md">1-year risk difference</span></td>
+<td headers="Overall" class="gt_row gt_right" style="text-align: left; vertical-align: top; border-top-width: 0; border-top-style: solid; border-top-color: #000000;"></td>
+<td headers="Male" class="gt_row gt_left" style="text-align: left; vertical-align: top; border-top-width: 0; border-top-style: solid; border-top-color: #000000;">0 (reference)</td>
+<td headers="Female" class="gt_row gt_right" style="text-align: left; vertical-align: top; border-top-width: 0; border-top-style: solid; border-top-color: #000000;">-0.19 (-0.33, -0.04)</td></tr>
+    <tr><td headers="Summary" class="gt_row gt_left" style="text-align: left; vertical-align: top; text-indent: 10px; border-top-width: 0; border-top-style: solid; border-top-color: #000000;"><span class="gt_from_md">1-year survival ratio</span></td>
+<td headers="Overall" class="gt_row gt_right" style="text-align: left; vertical-align: top; border-top-width: 0; border-top-style: solid; border-top-color: #000000;"></td>
+<td headers="Male" class="gt_row gt_left" style="text-align: left; vertical-align: top; border-top-width: 0; border-top-style: solid; border-top-color: #000000;">1 (reference)</td>
+<td headers="Female" class="gt_row gt_right" style="text-align: left; vertical-align: top; border-top-width: 0; border-top-style: solid; border-top-color: #000000;">1.57 (1.12, 2.19)</td></tr>
+    <tr><td headers="Summary" class="gt_row gt_left" style="text-align: left; vertical-align: top; text-indent: 10px; border-top-width: 0; border-top-style: solid; border-top-color: #000000;"><span class="gt_from_md">1-year risk ratio</span></td>
+<td headers="Overall" class="gt_row gt_right" style="text-align: left; vertical-align: top; border-top-width: 0; border-top-style: solid; border-top-color: #000000;"></td>
+<td headers="Male" class="gt_row gt_left" style="text-align: left; vertical-align: top; border-top-width: 0; border-top-style: solid; border-top-color: #000000;">1 (reference)</td>
+<td headers="Female" class="gt_row gt_right" style="text-align: left; vertical-align: top; border-top-width: 0; border-top-style: solid; border-top-color: #000000;">0.71 (0.55, 1.00)</td></tr>
+    <tr><td headers="Summary" class="gt_row gt_left" style="text-align: left; vertical-align: top; text-indent: 10px; border-top-width: 0; border-top-style: solid; border-top-color: #000000;"><span class="gt_from_md">Hazard ratio (95% CI)</span></td>
+<td headers="Overall" class="gt_row gt_right" style="text-align: left; vertical-align: top; border-top-width: 0; border-top-style: solid; border-top-color: #000000;"></td>
+<td headers="Male" class="gt_row gt_left" style="text-align: left; vertical-align: top; border-top-width: 0; border-top-style: solid; border-top-color: #000000;">1 (reference)</td>
+<td headers="Female" class="gt_row gt_right" style="text-align: left; vertical-align: top; border-top-width: 0; border-top-style: solid; border-top-color: #000000;">0.59 (0.42, 0.82)</td></tr>
+  </tbody>
+  
+  
+</table>
+</div>
+</div>
+<div id="absolute-estimates-per-exposure-category" class="section level1">
+<h1>Absolute estimates per exposure category</h1>
+<table>
+<colgroup>
+<col width="16%" />
+<col width="54%" />
+<col width="29%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th><code>type</code></th>
+<th>Description</th>
+<th>Options (<code>arguments =</code>)</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>&quot;cuminc&quot;</code></td>
+<td>Cumulative incidence (“risk”) from the Kaplan-Meier estimator or, if
+competing risks are present, its generalized form, the Aalen-Johansen
+estimator. If no time point is provided, returns cumulative incidence at
+end of follow-up. Change between display as proportion or percent using
+the parameter <code>risk_percent</code> of
+<code>rifttable()</code>.</td>
+<td><code>timepoint</code>, <code>id</code>. Example:
+<code>list(timepoint = 2.5)</code> to show 2.5-year risk.</td>
+</tr>
+<tr class="even">
+<td><code>&quot;cuminc (ci)&quot;</code></td>
+<td>Cumulative incidence (“risk”), as above, with confidence intervals
+(default: 95%; Greenwood standard errors with log transformation, the
+default of the survival package/<code>survival::survfit()</code>).</td>
+<td>See <code>&quot;cuminc&quot;</code>.</td>
+</tr>
+<tr class="odd">
+<td><code>&quot;events&quot;</code></td>
+<td>Event count.</td>
+<td></td>
+</tr>
+<tr class="even">
+<td><code>&quot;events/time&quot;</code></td>
+<td>Events slash person-time.</td>
+<td></td>
+</tr>
+<tr class="odd">
+<td><code>&quot;events/time (rate)&quot;</code></td>
+<td>A combination: Events slash time followed by rate in
+parentheses.</td>
+<td></td>
+</tr>
+<tr class="even">
+<td><code>&quot;events/total&quot;</code></td>
+<td>Events slash number of observations.</td>
+<td></td>
+</tr>
+<tr class="odd">
+<td><code>&quot;rate&quot;</code></td>
+<td>Event rate: event count divided by person-time, multiplied by the
+<code>rifttable()</code> parameter <code>factor</code>.</td>
+<td></td>
+</tr>
+<tr class="even">
+<td><code>&quot;rate (ci)&quot;</code></td>
+<td>Event rate with confidence interval (default: 95%; Poisson-type
+large-sample interval).</td>
+<td></td>
+</tr>
+<tr class="odd">
+<td><code>&quot;surv&quot;</code></td>
+<td>Survival from the Kaplan-Meier estimator. Not estimated if competing
+risks are present. If no time point is provided, returns survival at end
+of follow-up. Change between display as proportion or percent using the
+parameter <code>risk_percent</code> of <code>rifttable()</code>.</td>
+<td>See <code>&quot;cuminc&quot;</code>.</td>
+</tr>
+<tr class="even">
+<td><code>&quot;surv (ci)&quot;</code></td>
+<td>Survival from the Kaplan-Meier estimator, as above, with confidence
+interval (default: 95%; Greenwood standard errors with log
+transformation, the default of the survival
+package/<code>survival::survfit()</code>).</td>
+<td>See <code>&quot;cuminc&quot;</code>.</td>
+</tr>
+<tr class="odd">
+<td><code>&quot;time&quot;</code></td>
+<td>Person-time.</td>
+<td></td>
+</tr>
+<tr class="even">
+<td><code>&quot;maxfu&quot;</code></td>
+<td>Maximum follow-up time.</td>
+<td></td>
+</tr>
+<tr class="odd">
+<td><code>&quot;medfu&quot;</code></td>
+<td>Median follow-up (“reverse Kaplan-Meier”), equals median survival
+for censoring. If competing risks are present, events other than the
+event of interest are also considered censoring to estimate the median
+follow-up for the event of interest.</td>
+<td></td>
+</tr>
+<tr class="even">
+<td><code>&quot;medfu (iqr)&quot;</code></td>
+<td>Median and interquartile range for follow-up, as above.</td>
+<td></td>
+</tr>
+<tr class="odd">
+<td><code>&quot;medsurv&quot;</code></td>
+<td>Median survival.</td>
+<td></td>
+</tr>
+<tr class="even">
+<td><code>&quot;medsurv (ci)&quot;</code></td>
+<td>Median survival with confidence interval (default: 95%).</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div id="comparative-estimates-with-confidence-intervals" class="section level1">
+<h1>Comparative estimates with confidence intervals</h1>
+<table>
+<colgroup>
+<col width="14%" />
+<col width="48%" />
+<col width="37%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th><code>type</code></th>
+<th>Description</th>
+<th>Options (<code>arguments =</code>)</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>&quot;cumincdiff&quot;</code></td>
+<td>Difference in cumulative incidence (risk difference) from
+Kaplan-Meier estimator or, if competing risks are present, its
+generalized form, the Aalen-Johansen estimator, with confidence interval
+(default: 95%). Uses <code>rifttable::survdiff_ci()</code>.</td>
+<td><code>timepoint</code>. Example: <code>list(timepoint = 2.5)</code>
+to calculate difference in 2.5-year risk.</td>
+</tr>
+<tr class="even">
+<td><code>&quot;cumincratio&quot;</code></td>
+<td>Ratio of cumulative incidence (risk ratio), with confidence interval
+(default: 95%), similar to <code>&quot;cumincdiff&quot;</code>.</td>
+<td><code>timepoint</code></td>
+</tr>
+<tr class="odd">
+<td><code>&quot;hr&quot;</code></td>
+<td>Hazard ratio from Cox proportional hazards regression, with
+confidence interval (default: 95%). If competing events are present,
+hazard ratios are cause-specific for the event of interest.</td>
+<td><code>list(robust = TRUE)</code> for robust (sandwich) standard
+errors. Use <code>&quot;+ cluster(id_variable)&quot;</code> in
+<code>confounders</code> to obtain clustering specifically for Cox
+models, or use the <code>id</code> argument of the main
+<code>rifttable()</code> call.</td>
+</tr>
+<tr class="even">
+<td><code>&quot;survdiff&quot;</code></td>
+<td>Difference in survival from Kaplan-Meier estimator, with confidence
+interval (default: 95%). Not estimated if competing risks are present.
+Uses <code>rifttable::survdiff_ci()</code>.</td>
+<td>See <code>&quot;cumincdiff&quot;</code>.</td>
+</tr>
+<tr class="odd">
+<td><code>&quot;survratio&quot;</code></td>
+<td>Ratio of survival from Kaplan-Meier estimator, with confidence
+interval (default: 95%), similar to <code>&quot;survdiff&quot;</code>.</td>
+<td>See <code>&quot;cumincdiff&quot;</code>.</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div id="competing-events" class="section level1">
+<h1>Competing events</h1>
+<p>With only one event type, the <code>event</code> variable only has
+two levels: censoring, typically encoded as <code>0</code>, and the
+event, typically encoded as <code>1</code>.</p>
+<p>With competing events, the <code>event</code> variable will have
+additional levels. The <code>survival::Surv()</code> function used by
+rifttable assumes that the first-ordered level represents censoring and
+the others are different non-censoring events. For example, if the event
+variable is a factor, then <code>&quot;Censoring&quot;</code> needs to be the
+first of the factor’s <code>levels()</code>.</p>
+<p>It is necessary to specify the event of interest in the
+<code>design</code> if competing events are present. For example, if the
+<code>event</code> variable is a factor variable
+<code>status_competing</code>, with levels <code>&quot;Censored&quot;</code>,
+<code>&quot;Outcome of interest&quot;</code>, and
+<code>&quot;Other-cause death&quot;</code>, then specify
+<code>event = &quot;status_competing@Outcome of interest&quot;</code> in the table
+design.</p>
+<p>See the tables above for how competing events are handled. When no
+details are noted, the event of interest is recoded as the sole event
+and other events are considered censoring.</p>
+</div>
+<div id="weighted-estimates" class="section level1">
+<h1>Weighted estimates</h1>
+<p>The name of a weights variable, for example inverse-probability
+weights, can be provided via the column <code>weights</code> of the
+<code>design</code> table. Weights, if present, are used by all
+comparative estimators of survival as well as by
+<code>type = &quot;cuminc&quot;</code> and <code>type = &quot;surv&quot;</code>, and are
+ignored otherwise.</p>
+</div>
+<div id="clustering-and-robust-variance" class="section level1">
+<h1>Clustering and robust variance</h1>
+<p>An <code>id</code> variable identifying individuals in the
+<code>data</code> must be provided when <code>time</code> and
+<code>time2</code> are used in the setting of competing events, or when
+non-integer weights are present. If no <code>id</code> variable is
+provided, each row is taken as one individual. Robust variance will then
+automatically be calculated by estimators of survival/cumulative
+incidence and Cox models.</p>
+</div>
+
+
+
+<!-- code folding -->
+
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>

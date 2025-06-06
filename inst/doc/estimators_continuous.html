@@ -1,0 +1,1084 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+<meta charset="utf-8" />
+<meta name="generator" content="pandoc" />
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
+
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+
+
+
+<title>Continuous outcomes</title>
+
+<script>// Pandoc 2.9 adds attributes on both header and div. We remove the former (to
+// be compatible with the behavior of Pandoc < 2.8).
+document.addEventListener('DOMContentLoaded', function(e) {
+  var hs = document.querySelectorAll("div.section[class*='level'] > :first-child");
+  var i, h, a;
+  for (i = 0; i < hs.length; i++) {
+    h = hs[i];
+    if (!/^h[1-6]$/i.test(h.tagName)) continue;  // it should be a header h1-h6
+    a = h.attributes;
+    while (a.length > 0) h.removeAttribute(a[0].name);
+  }
+});
+</script>
+
+<style type="text/css">
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+span.underline{text-decoration: underline;}
+div.column{display: inline-block; vertical-align: top; width: 50%;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+</style>
+
+
+
+<style type="text/css">
+code {
+white-space: pre;
+}
+.sourceCode {
+overflow: visible;
+}
+</style>
+<style type="text/css" data-origin="pandoc">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+{ counter-reset: source-line 0; }
+pre.numberSource code > span
+{ position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+{ content: counter(source-line);
+position: relative; left: -1em; text-align: right; vertical-align: baseline;
+border: none; display: inline-block;
+-webkit-touch-callout: none; -webkit-user-select: none;
+-khtml-user-select: none; -moz-user-select: none;
+-ms-user-select: none; user-select: none;
+padding: 0 4px; width: 4em;
+color: #aaaaaa;
+}
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa; padding-left: 4px; }
+div.sourceCode
+{ }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } 
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } 
+code span.at { color: #7d9029; } 
+code span.bn { color: #40a070; } 
+code span.bu { color: #008000; } 
+code span.cf { color: #007020; font-weight: bold; } 
+code span.ch { color: #4070a0; } 
+code span.cn { color: #880000; } 
+code span.co { color: #60a0b0; font-style: italic; } 
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } 
+code span.do { color: #ba2121; font-style: italic; } 
+code span.dt { color: #902000; } 
+code span.dv { color: #40a070; } 
+code span.er { color: #ff0000; font-weight: bold; } 
+code span.ex { } 
+code span.fl { color: #40a070; } 
+code span.fu { color: #06287e; } 
+code span.im { color: #008000; font-weight: bold; } 
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } 
+code span.kw { color: #007020; font-weight: bold; } 
+code span.op { color: #666666; } 
+code span.ot { color: #007020; } 
+code span.pp { color: #bc7a00; } 
+code span.sc { color: #4070a0; } 
+code span.ss { color: #bb6688; } 
+code span.st { color: #4070a0; } 
+code span.va { color: #19177c; } 
+code span.vs { color: #4070a0; } 
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } 
+</style>
+<script>
+// apply pandoc div.sourceCode style to pre.sourceCode instead
+(function() {
+  var sheets = document.styleSheets;
+  for (var i = 0; i < sheets.length; i++) {
+    if (sheets[i].ownerNode.dataset["origin"] !== "pandoc") continue;
+    try { var rules = sheets[i].cssRules; } catch (e) { continue; }
+    var j = 0;
+    while (j < rules.length) {
+      var rule = rules[j];
+      // check if there is a div.sourceCode rule
+      if (rule.type !== rule.STYLE_RULE || rule.selectorText !== "div.sourceCode") {
+        j++;
+        continue;
+      }
+      var style = rule.style.cssText;
+      // check if color or background-color is set
+      if (rule.style.color === '' && rule.style.backgroundColor === '') {
+        j++;
+        continue;
+      }
+      // replace div.sourceCode by a pre.sourceCode rule
+      sheets[i].deleteRule(j);
+      sheets[i].insertRule('pre.sourceCode{' + style + '}', j);
+    }
+  }
+})();
+</script>
+
+
+
+
+<style type="text/css">body {
+background-color: #fff;
+margin: 1em auto;
+max-width: 700px;
+overflow: visible;
+padding-left: 2em;
+padding-right: 2em;
+font-family: "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
+font-size: 14px;
+line-height: 1.35;
+}
+#TOC {
+clear: both;
+margin: 0 0 10px 10px;
+padding: 4px;
+width: 400px;
+border: 1px solid #CCCCCC;
+border-radius: 5px;
+background-color: #f6f6f6;
+font-size: 13px;
+line-height: 1.3;
+}
+#TOC .toctitle {
+font-weight: bold;
+font-size: 15px;
+margin-left: 5px;
+}
+#TOC ul {
+padding-left: 40px;
+margin-left: -1.5em;
+margin-top: 5px;
+margin-bottom: 5px;
+}
+#TOC ul ul {
+margin-left: -2em;
+}
+#TOC li {
+line-height: 16px;
+}
+table {
+margin: 1em auto;
+border-width: 1px;
+border-color: #DDDDDD;
+border-style: outset;
+border-collapse: collapse;
+}
+table th {
+border-width: 2px;
+padding: 5px;
+border-style: inset;
+}
+table td {
+border-width: 1px;
+border-style: inset;
+line-height: 18px;
+padding: 5px 5px;
+}
+table, table th, table td {
+border-left-style: none;
+border-right-style: none;
+}
+table thead, table tr.even {
+background-color: #f7f7f7;
+}
+p {
+margin: 0.5em 0;
+}
+blockquote {
+background-color: #f6f6f6;
+padding: 0.25em 0.75em;
+}
+hr {
+border-style: solid;
+border: none;
+border-top: 1px solid #777;
+margin: 28px 0;
+}
+dl {
+margin-left: 0;
+}
+dl dd {
+margin-bottom: 13px;
+margin-left: 13px;
+}
+dl dt {
+font-weight: bold;
+}
+ul {
+margin-top: 0;
+}
+ul li {
+list-style: circle outside;
+}
+ul ul {
+margin-bottom: 0;
+}
+pre, code {
+background-color: #f7f7f7;
+border-radius: 3px;
+color: #333;
+white-space: pre-wrap; 
+}
+pre {
+border-radius: 3px;
+margin: 5px 0px 10px 0px;
+padding: 10px;
+}
+pre:not([class]) {
+background-color: #f7f7f7;
+}
+code {
+font-family: Consolas, Monaco, 'Courier New', monospace;
+font-size: 85%;
+}
+p > code, li > code {
+padding: 2px 0px;
+}
+div.figure {
+text-align: center;
+}
+img {
+background-color: #FFFFFF;
+padding: 2px;
+border: 1px solid #DDDDDD;
+border-radius: 3px;
+border: 1px solid #CCCCCC;
+margin: 0 5px;
+}
+h1 {
+margin-top: 0;
+font-size: 35px;
+line-height: 40px;
+}
+h2 {
+border-bottom: 4px solid #f7f7f7;
+padding-top: 10px;
+padding-bottom: 2px;
+font-size: 145%;
+}
+h3 {
+border-bottom: 2px solid #f7f7f7;
+padding-top: 10px;
+font-size: 120%;
+}
+h4 {
+border-bottom: 1px solid #f7f7f7;
+margin-left: 8px;
+font-size: 105%;
+}
+h5, h6 {
+border-bottom: 1px solid #ccc;
+font-size: 105%;
+}
+a {
+color: #0033dd;
+text-decoration: none;
+}
+a:hover {
+color: #6666ff; }
+a:visited {
+color: #800080; }
+a:visited:hover {
+color: #BB00BB; }
+a[href^="http:"] {
+text-decoration: underline; }
+a[href^="https:"] {
+text-decoration: underline; }
+
+code > span.kw { color: #555; font-weight: bold; } 
+code > span.dt { color: #902000; } 
+code > span.dv { color: #40a070; } 
+code > span.bn { color: #d14; } 
+code > span.fl { color: #d14; } 
+code > span.ch { color: #d14; } 
+code > span.st { color: #d14; } 
+code > span.co { color: #888888; font-style: italic; } 
+code > span.ot { color: #007020; } 
+code > span.al { color: #ff0000; font-weight: bold; } 
+code > span.fu { color: #900; font-weight: bold; } 
+code > span.er { color: #a61717; background-color: #e3d2d2; } 
+</style>
+
+
+
+
+</head>
+
+<body>
+
+
+
+
+<h1 class="title toc-ignore">Continuous outcomes</h1>
+
+
+
+<div id="example" class="section level1">
+<h1>Example</h1>
+<p>The example uses the <code>cancer</code> data from the survival
+package. To compare patient age by ECOG performance status, recode the
+variable <code>ph.ecog</code> to be categorical (a <code>factor</code>)
+and exclude patients with rare elevated <code>ecog.ps</code>:</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
+<span id="cb1-2"><a href="#cb1-2" tabindex="-1"></a><span class="fu">library</span>(rifttable)</span>
+<span id="cb1-3"><a href="#cb1-3" tabindex="-1"></a><span class="fu">data</span>(cancer, <span class="at">package =</span> <span class="st">&quot;survival&quot;</span>)</span>
+<span id="cb1-4"><a href="#cb1-4" tabindex="-1"></a>cancer <span class="ot">&lt;-</span> cancer <span class="sc">|&gt;</span></span>
+<span id="cb1-5"><a href="#cb1-5" tabindex="-1"></a>  <span class="fu">filter</span>(ph.ecog <span class="sc">&lt;</span> <span class="dv">3</span>) <span class="sc">|&gt;</span></span>
+<span id="cb1-6"><a href="#cb1-6" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">ph.ecog =</span> <span class="fu">factor</span>(ph.ecog))</span>
+<span id="cb1-7"><a href="#cb1-7" tabindex="-1"></a><span class="fu">attr</span>(cancer<span class="sc">$</span>ph.ecog, <span class="at">which =</span> <span class="st">&quot;label&quot;</span>) <span class="ot">&lt;-</span> <span class="st">&quot;ECOG performance status&quot;</span></span>
+<span id="cb1-8"><a href="#cb1-8" tabindex="-1"></a></span>
+<span id="cb1-9"><a href="#cb1-9" tabindex="-1"></a><span class="fu">tribble</span>(</span>
+<span id="cb1-10"><a href="#cb1-10" tabindex="-1"></a>  <span class="sc">~</span>label,                                       <span class="sc">~</span>type,</span>
+<span id="cb1-11"><a href="#cb1-11" tabindex="-1"></a>  <span class="st">&quot;**Absolute estimates**&quot;</span>,                     <span class="st">&quot;&quot;</span>,</span>
+<span id="cb1-12"><a href="#cb1-12" tabindex="-1"></a>  <span class="st">&quot;Observations&quot;</span>,                               <span class="st">&quot;total&quot;</span>,</span>
+<span id="cb1-13"><a href="#cb1-13" tabindex="-1"></a>  <span class="st">&quot;Sum&quot;</span>,                                        <span class="st">&quot;sum&quot;</span>,</span>
+<span id="cb1-14"><a href="#cb1-14" tabindex="-1"></a>  <span class="st">&quot;Range&quot;</span>,                                      <span class="st">&quot;range&quot;</span>,</span>
+<span id="cb1-15"><a href="#cb1-15" tabindex="-1"></a>  <span class="st">&quot;Mean&quot;</span>,                                       <span class="st">&quot;&quot;</span>,</span>
+<span id="cb1-16"><a href="#cb1-16" tabindex="-1"></a>  <span class="st">&quot;  Mean (i.e., arithmetic mean)&quot;</span>,             <span class="st">&quot;mean&quot;</span>,</span>
+<span id="cb1-17"><a href="#cb1-17" tabindex="-1"></a>  <span class="st">&quot;  Mean (95% CI)&quot;</span>,                            <span class="st">&quot;mean (ci)&quot;</span>,</span>
+<span id="cb1-18"><a href="#cb1-18" tabindex="-1"></a>  <span class="st">&quot;  Mean (standard deviation)&quot;</span>,                <span class="st">&quot;mean (sd)&quot;</span>,</span>
+<span id="cb1-19"><a href="#cb1-19" tabindex="-1"></a>  <span class="st">&quot;  Geometric mean&quot;</span>,                           <span class="st">&quot;geomean&quot;</span>,</span>
+<span id="cb1-20"><a href="#cb1-20" tabindex="-1"></a>  <span class="st">&quot;Median&quot;</span>,                                     <span class="st">&quot;median&quot;</span>,</span>
+<span id="cb1-21"><a href="#cb1-21" tabindex="-1"></a>  <span class="st">&quot;Median (interquartile range)&quot;</span>,               <span class="st">&quot;median (iqr)&quot;</span>,</span>
+<span id="cb1-22"><a href="#cb1-22" tabindex="-1"></a>  <span class="st">&quot;&quot;</span>,                                           <span class="st">&quot;&quot;</span>,</span>
+<span id="cb1-23"><a href="#cb1-23" tabindex="-1"></a>  <span class="st">&quot;**Comparative estimates**&quot;</span>,                  <span class="st">&quot;&quot;</span>,</span>
+<span id="cb1-24"><a href="#cb1-24" tabindex="-1"></a>  <span class="st">&quot;Mean difference (95% CI)&quot;</span>,                   <span class="st">&quot;diff&quot;</span>,</span>
+<span id="cb1-25"><a href="#cb1-25" tabindex="-1"></a>  <span class="st">&quot;Median difference (95% CI)&quot;</span>,                 <span class="st">&quot;quantreg&quot;</span>,</span>
+<span id="cb1-26"><a href="#cb1-26" tabindex="-1"></a>  <span class="st">&quot;Mean ratio&quot;</span>,                                 <span class="st">&quot;&quot;</span>,</span>
+<span id="cb1-27"><a href="#cb1-27" tabindex="-1"></a>  <span class="st">&quot;  of arithmetic means&quot;</span>,                      <span class="st">&quot;fold&quot;</span>,</span>
+<span id="cb1-28"><a href="#cb1-28" tabindex="-1"></a>  <span class="st">&quot;  of arithmetic means, empirical SE&quot;</span>,        <span class="st">&quot;irrrob&quot;</span>,</span>
+<span id="cb1-29"><a href="#cb1-29" tabindex="-1"></a>  <span class="st">&quot;  of geometric means&quot;</span>,                       <span class="st">&quot;foldlog&quot;</span></span>
+<span id="cb1-30"><a href="#cb1-30" tabindex="-1"></a>) <span class="sc">|&gt;</span></span>
+<span id="cb1-31"><a href="#cb1-31" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb1-32"><a href="#cb1-32" tabindex="-1"></a>    <span class="at">exposure =</span> <span class="st">&quot;ph.ecog&quot;</span>,</span>
+<span id="cb1-33"><a href="#cb1-33" tabindex="-1"></a>    <span class="at">outcome =</span> <span class="st">&quot;age&quot;</span></span>
+<span id="cb1-34"><a href="#cb1-34" tabindex="-1"></a>  ) <span class="sc">|&gt;</span></span>
+<span id="cb1-35"><a href="#cb1-35" tabindex="-1"></a>  <span class="fu">rifttable</span>(</span>
+<span id="cb1-36"><a href="#cb1-36" tabindex="-1"></a>    <span class="at">data =</span> cancer,</span>
+<span id="cb1-37"><a href="#cb1-37" tabindex="-1"></a>    <span class="at">diff_digits =</span> <span class="dv">1</span>, <span class="co"># Suppress unnecessary precision in most estimates</span></span>
+<span id="cb1-38"><a href="#cb1-38" tabindex="-1"></a>    <span class="co"># Show extraneous digits to highlight (minor) differences in ratio  models:</span></span>
+<span id="cb1-39"><a href="#cb1-39" tabindex="-1"></a>    <span class="at">ratio_digits =</span> <span class="dv">3</span>,</span>
+<span id="cb1-40"><a href="#cb1-40" tabindex="-1"></a>    <span class="at">overall =</span> <span class="cn">TRUE</span></span>
+<span id="cb1-41"><a href="#cb1-41" tabindex="-1"></a>  ) <span class="sc">|&gt;</span></span>
+<span id="cb1-42"><a href="#cb1-42" tabindex="-1"></a>  <span class="fu">rt_gt</span>() <span class="co"># obtain formatted output</span></span></code></pre></div>
+<div id="rifttable" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#rifttable table {
+font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
+-webkit-font-smoothing: antialiased;
+-moz-osx-font-smoothing: grayscale;
+}
+#rifttable thead, #rifttable tbody, #rifttable tfoot, #rifttable tr, #rifttable td, #rifttable th {
+border-style: none;
+}
+#rifttable p {
+margin: 0;
+padding: 0;
+}
+#rifttable .gt_table {
+display: table;
+border-collapse: collapse;
+line-height: normal;
+margin-left: auto;
+margin-right: auto;
+color: #333333;
+font-size: 16px;
+font-weight: normal;
+font-style: normal;
+background-color: #FFFFFF;
+width: auto;
+border-top-style: none;
+border-top-width: 2px;
+border-top-color: #A8A8A8;
+border-right-style: none;
+border-right-width: 2px;
+border-right-color: #D3D3D3;
+border-bottom-style: solid;
+border-bottom-width: 2px;
+border-bottom-color: #A8A8A8;
+border-left-style: none;
+border-left-width: 2px;
+border-left-color: #D3D3D3;
+}
+#rifttable .gt_caption {
+padding-top: 4px;
+padding-bottom: 4px;
+}
+#rifttable .gt_title {
+color: #333333;
+font-size: 125%;
+font-weight: initial;
+padding-top: 4px;
+padding-bottom: 4px;
+padding-left: 5px;
+padding-right: 5px;
+border-bottom-color: #FFFFFF;
+border-bottom-width: 0;
+}
+#rifttable .gt_subtitle {
+color: #333333;
+font-size: 85%;
+font-weight: initial;
+padding-top: 3px;
+padding-bottom: 5px;
+padding-left: 5px;
+padding-right: 5px;
+border-top-color: #FFFFFF;
+border-top-width: 0;
+}
+#rifttable .gt_heading {
+background-color: #FFFFFF;
+text-align: center;
+border-bottom-color: #FFFFFF;
+border-left-style: none;
+border-left-width: 1px;
+border-left-color: #D3D3D3;
+border-right-style: none;
+border-right-width: 1px;
+border-right-color: #D3D3D3;
+}
+#rifttable .gt_bottom_border {
+border-bottom-style: solid;
+border-bottom-width: 2px;
+border-bottom-color: #D3D3D3;
+}
+#rifttable .gt_col_headings {
+border-top-style: none;
+border-top-width: 2px;
+border-top-color: #D3D3D3;
+border-bottom-style: solid;
+border-bottom-width: 2px;
+border-bottom-color: #D3D3D3;
+border-left-style: none;
+border-left-width: 1px;
+border-left-color: #D3D3D3;
+border-right-style: none;
+border-right-width: 1px;
+border-right-color: #D3D3D3;
+}
+#rifttable .gt_col_heading {
+color: #333333;
+background-color: #FFFFFF;
+font-size: 100%;
+font-weight: bold;
+text-transform: inherit;
+border-left-style: none;
+border-left-width: 1px;
+border-left-color: #D3D3D3;
+border-right-style: none;
+border-right-width: 1px;
+border-right-color: #D3D3D3;
+vertical-align: bottom;
+padding-top: 5px;
+padding-bottom: 6px;
+padding-left: 5px;
+padding-right: 5px;
+overflow-x: hidden;
+}
+#rifttable .gt_column_spanner_outer {
+color: #333333;
+background-color: #FFFFFF;
+font-size: 100%;
+font-weight: bold;
+text-transform: inherit;
+padding-top: 0;
+padding-bottom: 0;
+padding-left: 4px;
+padding-right: 4px;
+}
+#rifttable .gt_column_spanner_outer:first-child {
+padding-left: 0;
+}
+#rifttable .gt_column_spanner_outer:last-child {
+padding-right: 0;
+}
+#rifttable .gt_column_spanner {
+border-bottom-style: solid;
+border-bottom-width: 2px;
+border-bottom-color: #D3D3D3;
+vertical-align: bottom;
+padding-top: 5px;
+padding-bottom: 5px;
+overflow-x: hidden;
+display: inline-block;
+width: 100%;
+}
+#rifttable .gt_spanner_row {
+border-bottom-style: hidden;
+}
+#rifttable .gt_group_heading {
+padding-top: 8px;
+padding-bottom: 8px;
+padding-left: 5px;
+padding-right: 5px;
+color: #333333;
+background-color: #FFFFFF;
+font-size: 100%;
+font-weight: initial;
+text-transform: inherit;
+border-top-style: solid;
+border-top-width: 2px;
+border-top-color: #D3D3D3;
+border-bottom-style: solid;
+border-bottom-width: 2px;
+border-bottom-color: #D3D3D3;
+border-left-style: none;
+border-left-width: 1px;
+border-left-color: #D3D3D3;
+border-right-style: none;
+border-right-width: 1px;
+border-right-color: #D3D3D3;
+vertical-align: middle;
+text-align: left;
+}
+#rifttable .gt_empty_group_heading {
+padding: 0.5px;
+color: #333333;
+background-color: #FFFFFF;
+font-size: 100%;
+font-weight: initial;
+border-top-style: solid;
+border-top-width: 2px;
+border-top-color: #D3D3D3;
+border-bottom-style: solid;
+border-bottom-width: 2px;
+border-bottom-color: #D3D3D3;
+vertical-align: middle;
+}
+#rifttable .gt_from_md > :first-child {
+margin-top: 0;
+}
+#rifttable .gt_from_md > :last-child {
+margin-bottom: 0;
+}
+#rifttable .gt_row {
+padding-top: 0px;
+padding-bottom: 0px;
+padding-left: 5px;
+padding-right: 5px;
+margin: 10px;
+border-top-style: solid;
+border-top-width: 1px;
+border-top-color: #D3D3D3;
+border-left-style: none;
+border-left-width: 1px;
+border-left-color: #D3D3D3;
+border-right-style: none;
+border-right-width: 1px;
+border-right-color: #D3D3D3;
+vertical-align: middle;
+overflow-x: hidden;
+}
+#rifttable .gt_stub {
+color: #333333;
+background-color: #FFFFFF;
+font-size: 100%;
+font-weight: initial;
+text-transform: inherit;
+border-right-style: solid;
+border-right-width: 2px;
+border-right-color: #D3D3D3;
+padding-left: 5px;
+padding-right: 5px;
+}
+#rifttable .gt_stub_row_group {
+color: #333333;
+background-color: #FFFFFF;
+font-size: 100%;
+font-weight: initial;
+text-transform: inherit;
+border-right-style: solid;
+border-right-width: 2px;
+border-right-color: #D3D3D3;
+padding-left: 5px;
+padding-right: 5px;
+vertical-align: top;
+}
+#rifttable .gt_row_group_first td {
+border-top-width: 2px;
+}
+#rifttable .gt_row_group_first th {
+border-top-width: 2px;
+}
+#rifttable .gt_summary_row {
+color: #333333;
+background-color: #FFFFFF;
+text-transform: inherit;
+padding-top: 8px;
+padding-bottom: 8px;
+padding-left: 5px;
+padding-right: 5px;
+}
+#rifttable .gt_first_summary_row {
+border-top-style: solid;
+border-top-color: #D3D3D3;
+}
+#rifttable .gt_first_summary_row.thick {
+border-top-width: 2px;
+}
+#rifttable .gt_last_summary_row {
+padding-top: 8px;
+padding-bottom: 8px;
+padding-left: 5px;
+padding-right: 5px;
+border-bottom-style: solid;
+border-bottom-width: 2px;
+border-bottom-color: #D3D3D3;
+}
+#rifttable .gt_grand_summary_row {
+color: #333333;
+background-color: #FFFFFF;
+text-transform: inherit;
+padding-top: 8px;
+padding-bottom: 8px;
+padding-left: 5px;
+padding-right: 5px;
+}
+#rifttable .gt_first_grand_summary_row {
+padding-top: 8px;
+padding-bottom: 8px;
+padding-left: 5px;
+padding-right: 5px;
+border-top-style: double;
+border-top-width: 6px;
+border-top-color: #D3D3D3;
+}
+#rifttable .gt_last_grand_summary_row_top {
+padding-top: 8px;
+padding-bottom: 8px;
+padding-left: 5px;
+padding-right: 5px;
+border-bottom-style: double;
+border-bottom-width: 6px;
+border-bottom-color: #D3D3D3;
+}
+#rifttable .gt_striped {
+background-color: rgba(128, 128, 128, 0.05);
+}
+#rifttable .gt_table_body {
+border-top-style: none;
+border-top-width: 2px;
+border-top-color: #D3D3D3;
+border-bottom-style: solid;
+border-bottom-width: 2px;
+border-bottom-color: #D3D3D3;
+}
+#rifttable .gt_footnotes {
+color: #333333;
+background-color: #FFFFFF;
+border-bottom-style: none;
+border-bottom-width: 2px;
+border-bottom-color: #D3D3D3;
+border-left-style: none;
+border-left-width: 2px;
+border-left-color: #D3D3D3;
+border-right-style: none;
+border-right-width: 2px;
+border-right-color: #D3D3D3;
+}
+#rifttable .gt_footnote {
+margin: 0px;
+font-size: 90%;
+padding-top: 4px;
+padding-bottom: 4px;
+padding-left: 5px;
+padding-right: 5px;
+}
+#rifttable .gt_sourcenotes {
+color: #333333;
+background-color: #FFFFFF;
+border-bottom-style: none;
+border-bottom-width: 2px;
+border-bottom-color: #D3D3D3;
+border-left-style: none;
+border-left-width: 2px;
+border-left-color: #D3D3D3;
+border-right-style: none;
+border-right-width: 2px;
+border-right-color: #D3D3D3;
+}
+#rifttable .gt_sourcenote {
+font-size: 90%;
+padding-top: 4px;
+padding-bottom: 4px;
+padding-left: 5px;
+padding-right: 5px;
+}
+#rifttable .gt_left {
+text-align: left;
+}
+#rifttable .gt_center {
+text-align: center;
+}
+#rifttable .gt_right {
+text-align: right;
+font-variant-numeric: tabular-nums;
+}
+#rifttable .gt_font_normal {
+font-weight: normal;
+}
+#rifttable .gt_font_bold {
+font-weight: bold;
+}
+#rifttable .gt_font_italic {
+font-style: italic;
+}
+#rifttable .gt_super {
+font-size: 65%;
+}
+#rifttable .gt_footnote_marks {
+font-size: 75%;
+vertical-align: 0.4em;
+position: initial;
+}
+#rifttable .gt_asterisk {
+font-size: 100%;
+vertical-align: 0;
+}
+#rifttable .gt_indent_1 {
+text-indent: 5px;
+}
+#rifttable .gt_indent_2 {
+text-indent: 10px;
+}
+#rifttable .gt_indent_3 {
+text-indent: 15px;
+}
+#rifttable .gt_indent_4 {
+text-indent: 20px;
+}
+#rifttable .gt_indent_5 {
+text-indent: 25px;
+}
+#rifttable .katex-display {
+display: inline-flex !important;
+margin-bottom: 0.75em !important;
+}
+#rifttable div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
+height: 0px !important;
+}
+</style>
+<table class="gt_table" data-quarto-disable-processing="false" data-quarto-bootstrap="false">
+  <thead>
+    <tr class="gt_col_headings">
+      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1" style="text-align: left; vertical-align: bottom;" scope="col" id="Summary">Summary</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" style="text-align: left; vertical-align: bottom;" scope="col" id="Overall">Overall</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1" style="text-align: left; vertical-align: bottom;" scope="col" id="a0">0</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" style="text-align: left; vertical-align: bottom;" scope="col" id="a1">1</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" style="text-align: left; vertical-align: bottom;" scope="col" id="a2">2</th>
+    </tr>
+  </thead>
+  <tbody class="gt_table_body">
+    <tr><td headers="Summary" class="gt_row gt_left" style="text-align: left; vertical-align: top;"><span class="gt_from_md"><strong>Absolute estimates</strong></span></td>
+<td headers="Overall" class="gt_row gt_right" style="text-align: left; vertical-align: top;"></td>
+<td headers="0" class="gt_row gt_left" style="text-align: left; vertical-align: top;"></td>
+<td headers="1" class="gt_row gt_right" style="text-align: left; vertical-align: top;"></td>
+<td headers="2" class="gt_row gt_right" style="text-align: left; vertical-align: top;"></td></tr>
+    <tr><td headers="Summary" class="gt_row gt_left" style="text-align: left; vertical-align: top;"><span class="gt_from_md">Observations</span></td>
+<td headers="Overall" class="gt_row gt_right" style="text-align: left; vertical-align: top;">226</td>
+<td headers="0" class="gt_row gt_left" style="text-align: left; vertical-align: top;">63</td>
+<td headers="1" class="gt_row gt_right" style="text-align: left; vertical-align: top;">113</td>
+<td headers="2" class="gt_row gt_right" style="text-align: left; vertical-align: top;">50</td></tr>
+    <tr><td headers="Summary" class="gt_row gt_left" style="text-align: left; vertical-align: top;"><span class="gt_from_md">Sum</span></td>
+<td headers="Overall" class="gt_row gt_right" style="text-align: left; vertical-align: top;">14108.0</td>
+<td headers="0" class="gt_row gt_left" style="text-align: left; vertical-align: top;">3853.0</td>
+<td headers="1" class="gt_row gt_right" style="text-align: left; vertical-align: top;">6944.0</td>
+<td headers="2" class="gt_row gt_right" style="text-align: left; vertical-align: top;">3311.0</td></tr>
+    <tr><td headers="Summary" class="gt_row gt_left" style="text-align: left; vertical-align: top;"><span class="gt_from_md">Range</span></td>
+<td headers="Overall" class="gt_row gt_right" style="text-align: left; vertical-align: top;">39.0, 82.0</td>
+<td headers="0" class="gt_row gt_left" style="text-align: left; vertical-align: top;">39.0, 82.0</td>
+<td headers="1" class="gt_row gt_right" style="text-align: left; vertical-align: top;">40.0, 80.0</td>
+<td headers="2" class="gt_row gt_right" style="text-align: left; vertical-align: top;">48.0, 77.0</td></tr>
+    <tr><td headers="Summary" class="gt_row gt_left" style="text-align: left; vertical-align: top;"><span class="gt_from_md">Mean</span></td>
+<td headers="Overall" class="gt_row gt_right" style="text-align: left; vertical-align: top;"></td>
+<td headers="0" class="gt_row gt_left" style="text-align: left; vertical-align: top;"></td>
+<td headers="1" class="gt_row gt_right" style="text-align: left; vertical-align: top;"></td>
+<td headers="2" class="gt_row gt_right" style="text-align: left; vertical-align: top;"></td></tr>
+    <tr><td headers="Summary" class="gt_row gt_left" style="text-align: left; vertical-align: top; text-indent: 10px; border-top-width: 0; border-top-style: solid; border-top-color: #000000;"><span class="gt_from_md">Mean (i.e., arithmetic mean)</span></td>
+<td headers="Overall" class="gt_row gt_right" style="text-align: left; vertical-align: top; border-top-width: 0; border-top-style: solid; border-top-color: #000000;">62.4</td>
+<td headers="0" class="gt_row gt_left" style="text-align: left; vertical-align: top; border-top-width: 0; border-top-style: solid; border-top-color: #000000;">61.2</td>
+<td headers="1" class="gt_row gt_right" style="text-align: left; vertical-align: top; border-top-width: 0; border-top-style: solid; border-top-color: #000000;">61.5</td>
+<td headers="2" class="gt_row gt_right" style="text-align: left; vertical-align: top; border-top-width: 0; border-top-style: solid; border-top-color: #000000;">66.2</td></tr>
+    <tr><td headers="Summary" class="gt_row gt_left" style="text-align: left; vertical-align: top; text-indent: 10px; border-top-width: 0; border-top-style: solid; border-top-color: #000000;"><span class="gt_from_md">Mean (95% CI)</span></td>
+<td headers="Overall" class="gt_row gt_right" style="text-align: left; vertical-align: top; border-top-width: 0; border-top-style: solid; border-top-color: #000000;">62.4 (61.2, 63.6)</td>
+<td headers="0" class="gt_row gt_left" style="text-align: left; vertical-align: top; border-top-width: 0; border-top-style: solid; border-top-color: #000000;">61.2 (58.8, 63.5)</td>
+<td headers="1" class="gt_row gt_right" style="text-align: left; vertical-align: top; border-top-width: 0; border-top-style: solid; border-top-color: #000000;">61.5 (59.8, 63.1)</td>
+<td headers="2" class="gt_row gt_right" style="text-align: left; vertical-align: top; border-top-width: 0; border-top-style: solid; border-top-color: #000000;">66.2 (64.0, 68.5)</td></tr>
+    <tr><td headers="Summary" class="gt_row gt_left" style="text-align: left; vertical-align: top; text-indent: 10px; border-top-width: 0; border-top-style: solid; border-top-color: #000000;"><span class="gt_from_md">Mean (standard deviation)</span></td>
+<td headers="Overall" class="gt_row gt_right" style="text-align: left; vertical-align: top; border-top-width: 0; border-top-style: solid; border-top-color: #000000;">62.4 (9.1)</td>
+<td headers="0" class="gt_row gt_left" style="text-align: left; vertical-align: top; border-top-width: 0; border-top-style: solid; border-top-color: #000000;">61.2 (9.6)</td>
+<td headers="1" class="gt_row gt_right" style="text-align: left; vertical-align: top; border-top-width: 0; border-top-style: solid; border-top-color: #000000;">61.5 (8.9)</td>
+<td headers="2" class="gt_row gt_right" style="text-align: left; vertical-align: top; border-top-width: 0; border-top-style: solid; border-top-color: #000000;">66.2 (8.1)</td></tr>
+    <tr><td headers="Summary" class="gt_row gt_left" style="text-align: left; vertical-align: top; text-indent: 10px; border-top-width: 0; border-top-style: solid; border-top-color: #000000;"><span class="gt_from_md">Geometric mean</span></td>
+<td headers="Overall" class="gt_row gt_right" style="text-align: left; vertical-align: top; border-top-width: 0; border-top-style: solid; border-top-color: #000000;">61.7</td>
+<td headers="0" class="gt_row gt_left" style="text-align: left; vertical-align: top; border-top-width: 0; border-top-style: solid; border-top-color: #000000;">60.4</td>
+<td headers="1" class="gt_row gt_right" style="text-align: left; vertical-align: top; border-top-width: 0; border-top-style: solid; border-top-color: #000000;">60.8</td>
+<td headers="2" class="gt_row gt_right" style="text-align: left; vertical-align: top; border-top-width: 0; border-top-style: solid; border-top-color: #000000;">65.7</td></tr>
+    <tr><td headers="Summary" class="gt_row gt_left" style="text-align: left; vertical-align: top;"><span class="gt_from_md">Median</span></td>
+<td headers="Overall" class="gt_row gt_right" style="text-align: left; vertical-align: top;">63.0</td>
+<td headers="0" class="gt_row gt_left" style="text-align: left; vertical-align: top;">61.0</td>
+<td headers="1" class="gt_row gt_right" style="text-align: left; vertical-align: top;">63.0</td>
+<td headers="2" class="gt_row gt_right" style="text-align: left; vertical-align: top;">68.0</td></tr>
+    <tr><td headers="Summary" class="gt_row gt_left" style="text-align: left; vertical-align: top;"><span class="gt_from_md">Median (interquartile range)</span></td>
+<td headers="Overall" class="gt_row gt_right" style="text-align: left; vertical-align: top;">63.0 (56.0, 69.0)</td>
+<td headers="0" class="gt_row gt_left" style="text-align: left; vertical-align: top;">61.0 (56.5, 68.0)</td>
+<td headers="1" class="gt_row gt_right" style="text-align: left; vertical-align: top;">63.0 (55.0, 68.0)</td>
+<td headers="2" class="gt_row gt_right" style="text-align: left; vertical-align: top;">68.0 (60.2, 73.0)</td></tr>
+    <tr><td headers="Summary" class="gt_row gt_left" style="text-align: left; vertical-align: top; text-indent: 10px; border-top-width: 0; border-top-style: solid; border-top-color: #000000;"><span class="gt_from_md"></span></td>
+<td headers="Overall" class="gt_row gt_right" style="text-align: left; vertical-align: top; border-top-width: 0; border-top-style: solid; border-top-color: #000000;"></td>
+<td headers="0" class="gt_row gt_left" style="text-align: left; vertical-align: top; border-top-width: 0; border-top-style: solid; border-top-color: #000000;"></td>
+<td headers="1" class="gt_row gt_right" style="text-align: left; vertical-align: top; border-top-width: 0; border-top-style: solid; border-top-color: #000000;"></td>
+<td headers="2" class="gt_row gt_right" style="text-align: left; vertical-align: top; border-top-width: 0; border-top-style: solid; border-top-color: #000000;"></td></tr>
+    <tr><td headers="Summary" class="gt_row gt_left" style="text-align: left; vertical-align: top;"><span class="gt_from_md"><strong>Comparative estimates</strong></span></td>
+<td headers="Overall" class="gt_row gt_right" style="text-align: left; vertical-align: top;"></td>
+<td headers="0" class="gt_row gt_left" style="text-align: left; vertical-align: top;"></td>
+<td headers="1" class="gt_row gt_right" style="text-align: left; vertical-align: top;"></td>
+<td headers="2" class="gt_row gt_right" style="text-align: left; vertical-align: top;"></td></tr>
+    <tr><td headers="Summary" class="gt_row gt_left" style="text-align: left; vertical-align: top;"><span class="gt_from_md">Mean difference (95% CI)</span></td>
+<td headers="Overall" class="gt_row gt_right" style="text-align: left; vertical-align: top;"></td>
+<td headers="0" class="gt_row gt_left" style="text-align: left; vertical-align: top;">0 (reference)</td>
+<td headers="1" class="gt_row gt_right" style="text-align: left; vertical-align: top;">0.3 (-2.5, 3.1)</td>
+<td headers="2" class="gt_row gt_right" style="text-align: left; vertical-align: top;">5.1 (1.7, 8.4)</td></tr>
+    <tr><td headers="Summary" class="gt_row gt_left" style="text-align: left; vertical-align: top;"><span class="gt_from_md">Median difference (95% CI)</span></td>
+<td headers="Overall" class="gt_row gt_right" style="text-align: left; vertical-align: top;"></td>
+<td headers="0" class="gt_row gt_left" style="text-align: left; vertical-align: top;">0 (reference)</td>
+<td headers="1" class="gt_row gt_right" style="text-align: left; vertical-align: top;">2.0 (-4.8, 8.8)</td>
+<td headers="2" class="gt_row gt_right" style="text-align: left; vertical-align: top;">7.0 (1.3, 12.2)</td></tr>
+    <tr><td headers="Summary" class="gt_row gt_left" style="text-align: left; vertical-align: top;"><span class="gt_from_md">Mean ratio</span></td>
+<td headers="Overall" class="gt_row gt_right" style="text-align: left; vertical-align: top;"></td>
+<td headers="0" class="gt_row gt_left" style="text-align: left; vertical-align: top;"></td>
+<td headers="1" class="gt_row gt_right" style="text-align: left; vertical-align: top;"></td>
+<td headers="2" class="gt_row gt_right" style="text-align: left; vertical-align: top;"></td></tr>
+    <tr><td headers="Summary" class="gt_row gt_left" style="text-align: left; vertical-align: top; text-indent: 10px; border-top-width: 0; border-top-style: solid; border-top-color: #000000;"><span class="gt_from_md">of arithmetic means</span></td>
+<td headers="Overall" class="gt_row gt_right" style="text-align: left; vertical-align: top; border-top-width: 0; border-top-style: solid; border-top-color: #000000;"></td>
+<td headers="0" class="gt_row gt_left" style="text-align: left; vertical-align: top; border-top-width: 0; border-top-style: solid; border-top-color: #000000;">1 (reference)</td>
+<td headers="1" class="gt_row gt_right" style="text-align: left; vertical-align: top; border-top-width: 0; border-top-style: solid; border-top-color: #000000;">1.005 (0.961, 1.051)</td>
+<td headers="2" class="gt_row gt_right" style="text-align: left; vertical-align: top; border-top-width: 0; border-top-style: solid; border-top-color: #000000;">1.083 (1.028, 1.140)</td></tr>
+    <tr><td headers="Summary" class="gt_row gt_left" style="text-align: left; vertical-align: top; text-indent: 10px; border-top-width: 0; border-top-style: solid; border-top-color: #000000;"><span class="gt_from_md">of arithmetic means, empirical SE</span></td>
+<td headers="Overall" class="gt_row gt_right" style="text-align: left; vertical-align: top; border-top-width: 0; border-top-style: solid; border-top-color: #000000;"></td>
+<td headers="0" class="gt_row gt_left" style="text-align: left; vertical-align: top; border-top-width: 0; border-top-style: solid; border-top-color: #000000;">1 (reference)</td>
+<td headers="1" class="gt_row gt_right" style="text-align: left; vertical-align: top; border-top-width: 0; border-top-style: solid; border-top-color: #000000;">1.005 (0.959, 1.053)</td>
+<td headers="2" class="gt_row gt_right" style="text-align: left; vertical-align: top; border-top-width: 0; border-top-style: solid; border-top-color: #000000;">1.083 (1.029, 1.139)</td></tr>
+    <tr><td headers="Summary" class="gt_row gt_left" style="text-align: left; vertical-align: top; text-indent: 10px; border-top-width: 0; border-top-style: solid; border-top-color: #000000;"><span class="gt_from_md">of geometric means</span></td>
+<td headers="Overall" class="gt_row gt_right" style="text-align: left; vertical-align: top; border-top-width: 0; border-top-style: solid; border-top-color: #000000;"></td>
+<td headers="0" class="gt_row gt_left" style="text-align: left; vertical-align: top; border-top-width: 0; border-top-style: solid; border-top-color: #000000;">1 (reference)</td>
+<td headers="1" class="gt_row gt_right" style="text-align: left; vertical-align: top; border-top-width: 0; border-top-style: solid; border-top-color: #000000;">1.007 (0.961, 1.055)</td>
+<td headers="2" class="gt_row gt_right" style="text-align: left; vertical-align: top; border-top-width: 0; border-top-style: solid; border-top-color: #000000;">1.088 (1.029, 1.151)</td></tr>
+  </tbody>
+  
+  
+</table>
+</div>
+</div>
+<div id="absolute-estimates-per-exposure-category" class="section level1">
+<h1>Absolute estimates per exposure category</h1>
+<table>
+<thead>
+<tr class="header">
+<th><code>type</code></th>
+<th>Description</th>
+<th>Options (<code>arguments =</code>)</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>&quot;total&quot;</code></td>
+<td>Count of observations.</td>
+<td></td>
+</tr>
+<tr class="even">
+<td><code>&quot;sum&quot;</code></td>
+<td>Sum.</td>
+<td></td>
+</tr>
+<tr class="odd">
+<td><code>&quot;range&quot;</code></td>
+<td>Range: Minimum to maximum value.</td>
+<td></td>
+</tr>
+<tr class="even">
+<td><code>&quot;mean&quot;</code></td>
+<td>Mean (arithmetic mean).</td>
+<td></td>
+</tr>
+<tr class="odd">
+<td><code>&quot;mean (ci)&quot;</code></td>
+<td>Mean and CI (default: 95%).</td>
+<td></td>
+</tr>
+<tr class="even">
+<td><code>&quot;mean (sd)&quot;</code></td>
+<td>Mean and standard deviation.</td>
+<td></td>
+</tr>
+<tr class="odd">
+<td><code>&quot;geomean&quot;</code></td>
+<td>Geometric mean.</td>
+<td></td>
+</tr>
+<tr class="even">
+<td><code>&quot;median&quot;</code></td>
+<td>Median.</td>
+<td></td>
+</tr>
+<tr class="odd">
+<td><code>&quot;median (iqr)&quot;</code></td>
+<td>Median and interquartile range.</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div id="comparative-estimates-with-confidence-intervals" class="section level1">
+<h1>Comparative estimates with confidence intervals</h1>
+<table>
+<colgroup>
+<col width="15%" />
+<col width="56%" />
+<col width="28%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th><code>type</code></th>
+<th>Description</th>
+<th>Options (<code>arguments =</code>)</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>&quot;diff&quot;</code></td>
+<td>Mean difference from linear model.</td>
+<td></td>
+</tr>
+<tr class="even">
+<td><code>&quot;fold&quot;</code></td>
+<td>Fold change from generalized linear model with log link (i.e., ratio
+of arithmetic means).</td>
+<td></td>
+</tr>
+<tr class="odd">
+<td><code>&quot;foldlog&quot;</code></td>
+<td>Fold change from linear model after log transformation of the
+outcome (<em>i.e.</em>, ratio of geometric means).</td>
+<td></td>
+</tr>
+<tr class="even">
+<td><code>&quot;irrrob&quot;</code></td>
+<td>Fold change from generalized linear model with Poisson distribution
+and log link and robust (sandwich) standard errors</td>
+<td></td>
+</tr>
+<tr class="odd">
+<td><code>&quot;quantreg&quot;</code></td>
+<td>Quantile difference from quantile regression using
+<code>quantreg::rq()</code> with <code>method = &quot;fn&quot;</code>. By default,
+this is the difference in medians.</td>
+<td><code>list(tau = 0.75)</code> to change the quantile to, e.g., the
+75th percentile.</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div id="more-on-ratios-of-continuous-outcomes" class="section level1">
+<h1>More on ratios of continuous outcomes</h1>
+<p>Three types of ratios for continuous outcomes are implemented in
+<code>rifttable()</code>:</p>
+<table>
+<colgroup>
+<col width="8%" />
+<col width="14%" />
+<col width="33%" />
+<col width="42%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th><code>type =</code></th>
+<th>Ratio of …</th>
+<th>Model</th>
+<th>Use</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>&quot;fold&quot;</code></td>
+<td>Arithmetic means</td>
+<td>Generalized linear model with Gaussian distribution and log link:
+<code>glm(y ~ x, family = gaussian(link = &quot;log&quot;))</code></td>
+<td>Tolerates <code>0</code> in the <code>outcome</code> variable. May
+be informative if outcome is normally distributed without
+transformation.</td>
+</tr>
+<tr class="even">
+<td><code>&quot;irrrob&quot;</code></td>
+<td>Arithmetic means</td>
+<td>Generalized linear model with Poisson distribution and log link:
+<code>glm(y ~ x, family = poisson())</code>, with robust (sandwich)
+standard errors</td>
+<td>Tolerates <code>0</code> in the <code>outcome</code> variable. May
+be informative if outcome is normally distributed without
+transformation.</td>
+</tr>
+<tr class="odd">
+<td><code>&quot;foldlog&quot;</code></td>
+<td>Geometric means</td>
+<td>Linear model with log-transformed outcome:
+<code>lm(log(y) ~ x)</code></td>
+<td>Does not tolerate <code>0</code> in the <code>outcome</code>
+variable, as <code>log(0)</code> is undefined (R returns
+<code>-Inf</code>). May be informative if outcome is normally
+distributed after log transformation.</td>
+</tr>
+</tbody>
+</table>
+<p>In all models, after exponentiation, beta coefficients can be
+interpreted as ratios. rifttable automatically does all necessary
+transformations.</p>
+<p>In the <code>cancer</code> data, ratios of usual (arithmetic) means
+of age could be considered informative, given that
+<code>hist(cancer$age)</code> etc. does not show a major skew in this
+outcome.</p>
+</div>
+
+
+
+<!-- code folding -->
+
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>
