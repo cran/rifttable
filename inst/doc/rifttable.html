@@ -48,8 +48,9 @@ overflow: visible;
 }
 </style>
 <style type="text/css" data-origin="pandoc">
+html { -webkit-text-size-adjust: 100%; }
 pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
 pre > code.sourceCode > span:empty { height: 1.2em; }
 .sourceCode { overflow: visible; }
 code.sourceCode > span { color: inherit; text-decoration: inherit; }
@@ -60,7 +61,7 @@ div.sourceCode { overflow: auto; }
 }
 @media print {
 pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
 }
 pre.numberSource code
 { counter-reset: source-line 0; }
@@ -342,7 +343,7 @@ code > span.er { color: #a61717; background-color: #e3d2d2; }
 
 <div id="loading-the-package" class="section level1">
 <h1>Loading the package</h1>
-<p>After installation (using <code>install.packages(&quot;rifttable&quot;</code>
+<p>After installation (using <code>install.packages(&quot;rifttable&quot;)</code>
 or <code>remotes::install_github(&quot;stopsack/rifttable&quot;)</code>), load the
 package with:</p>
 <div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" tabindex="-1"></a><span class="fu">library</span>(rifttable)</span></code></pre></div>
@@ -882,7 +883,6 @@ height: 0px !important;
 <td headers="Female" class="gt_row gt_right" style="text-align: left; vertical-align: top;">-0.22 (-0.34, -0.10)</td></tr>
   </tbody>
   
-  
 </table>
 </div>
 </div>
@@ -1316,7 +1316,6 @@ height: 0px !important;
 <td headers="RR" class="gt_row gt_left" style="text-align: left; vertical-align: top;">0.73 (0.60, 0.88)</td>
 <td headers="RD" class="gt_row gt_left" style="text-align: left; vertical-align: top;">-0.22 (-0.34, -0.10)</td></tr>
   </tbody>
-  
   
 </table>
 </div>
@@ -1826,7 +1825,6 @@ height: 0px !important;
 <td headers="Female" class="gt_row gt_right" style="text-align: left; vertical-align: top; border-top-width: 0; border-top-style: solid; border-top-color: #000000;">1.10 (0.62, 1.98)</td></tr>
   </tbody>
   
-  
 </table>
 </div>
 </div>
@@ -2271,7 +2269,6 @@ height: 0px !important;
 <td headers="Female" class="gt_row gt_right" style="text-align: left; vertical-align: top; border-top-width: 0; border-top-style: solid; border-top-color: #000000;">0.68 (0.34, 1.36)</td></tr>
   </tbody>
   
-  
 </table>
 </div>
 <p>With estimate <code>type</code> as columns:</p>
@@ -2701,7 +2698,6 @@ height: 0px !important;
 <td headers="ECOG PS2" class="gt_row gt_right" style="text-align: left; vertical-align: top;">16/21</td>
 <td headers="ECOG PS2 " class="gt_row gt_left" style="text-align: left; vertical-align: top;">0.68 (0.34, 1.36)</td></tr>
   </tbody>
-  
   
 </table>
 </div>
@@ -3200,7 +3196,6 @@ height: 0px !important;
 <td headers="2" class="gt_row gt_right" style="text-align: left; vertical-align: top; border-top-width: 0; border-top-style: solid; border-top-color: #000000;">4.90 (0.15, 9.66)</td>
 <td headers="Trend" class="gt_row gt_right" style="text-align: left; vertical-align: top; border-top-width: 0; border-top-style: solid; border-top-color: #000000;">4.36 (1.97, 6.75)</td></tr>
   </tbody>
-  
   
 </table>
 </div>

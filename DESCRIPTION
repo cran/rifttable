@@ -2,7 +2,7 @@ Package: rifttable
 Type: Package
 Title: Results Tables to Bridge the Rift Between Epidemiologists and
         Their Data
-Version: 0.7.1
+Version: 0.7.2
 Authors@R: 
     person(given = "Konrad H.",
            family = "Stopsack",
@@ -18,7 +18,7 @@ Description: Presentation-ready results tables for epidemiologists in an
     time. See Rothman (2017) <doi:10.1007/s10654-017-0314-3>.
 License: GPL (>= 3)
 Encoding: UTF-8
-RoxygenNote: 7.3.2
+RoxygenNote: 7.3.3
 Depends: R (>= 4.1.0)
 Imports: broom (>= 0.7.0), dplyr (>= 1.0.8), purrr, risks (>= 0.4.3),
         rlang (>= 0.4.0), stats, survival, stringr, tibble, tidyr
@@ -29,9 +29,9 @@ URL: https://stopsack.github.io/rifttable/,
         https://github.com/stopsack/rifttable/
 Config/testthat/edition: 3
 NeedsCompilation: no
-Packaged: 2025-06-04 18:22:41 UTC; stopsack
+Packaged: 2026-01-18 19:05:27 UTC; stopsack
 Author: Konrad H. Stopsack [aut, cre, cph] (ORCID:
     <https://orcid.org/0000-0002-0722-1311>)
 Maintainer: Konrad H. Stopsack <stopsack@post.harvard.edu>
 Repository: CRAN
-Date/Publication: 2025-06-06 13:00:02 UTC
+Date/Publication: 2026-01-18 19:50:02 UTC

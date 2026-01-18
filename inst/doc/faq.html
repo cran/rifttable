@@ -48,8 +48,9 @@ overflow: visible;
 }
 </style>
 <style type="text/css" data-origin="pandoc">
+html { -webkit-text-size-adjust: 100%; }
 pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
 pre > code.sourceCode > span:empty { height: 1.2em; }
 .sourceCode { overflow: visible; }
 code.sourceCode > span { color: inherit; text-decoration: inherit; }
@@ -60,7 +61,7 @@ div.sourceCode { overflow: auto; }
 }
 @media print {
 pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
 }
 pre.numberSource code
 { counter-reset: source-line 0; }
@@ -830,7 +831,6 @@ height: 0px !important;
 <td headers="Stage III" class="gt_row gt_right" style="text-align: left; vertical-align: top; border-top-width: 0; border-top-style: solid; border-top-color: #000000;">0.51 (0.25, 0.77)</td></tr>
   </tbody>
   
-  
 </table>
 </div>
 </div>
@@ -1325,7 +1325,6 @@ height: 0px !important;
 <td headers="Stage III" class="gt_row gt_right" style="text-align: left; vertical-align: top;">21</td></tr>
   </tbody>
 
-
 </table>
 </div></li>
 <li><p><strong>A dataset (tibble) defined using
@@ -1783,7 +1782,6 @@ height: 0px !important;
 <td headers="Stage II" class="gt_row gt_right" style="text-align: left; vertical-align: top;">26</td>
 <td headers="Stage III" class="gt_row gt_right" style="text-align: left; vertical-align: top;">21</td></tr>
   </tbody>
-
 
 </table>
 </div></li>
@@ -2251,7 +2249,6 @@ height: 0px !important;
 <td headers="Stage III" class="gt_row gt_right" style="text-align: left; vertical-align: top;">21</td></tr>
   </tbody>
 
-
 </table>
 </div></li>
 <li><p><strong>For descriptive tables: Use
@@ -2708,7 +2705,6 @@ height: 0px !important;
 <td headers="Stage II" class="gt_row gt_right" style="text-align: left; vertical-align: top;">26 (27%)</td>
 <td headers="Stage III" class="gt_row gt_right" style="text-align: left; vertical-align: top;">21 (72%)</td></tr>
   </tbody>
-
 
 </table>
 </div>
@@ -3229,7 +3225,6 @@ height: 0px !important;
 <td headers="Stage III" class="gt_row gt_right" style="text-align: left; vertical-align: top; border-top-width: 0; border-top-style: solid; border-top-color: #000000;">0.51 (0.25, 0.77)</td></tr>
   </tbody>
   
-  
 </table>
 </div>
 </div>
@@ -3715,7 +3710,6 @@ height: 0px !important;
 <td headers="Trend" class="gt_row gt_right" style="text-align: left; vertical-align: top; border-top-width: 0; border-top-style: solid; border-top-color: #000000;">0.20 (0.11, 0.29)</td></tr>
   </tbody>
   
-  
 </table>
 </div>
 </div>
@@ -4195,7 +4189,6 @@ height: 0px !important;
 <td headers="  Risk difference (95% CI)" class="gt_row gt_left" style="text-align: left; vertical-align: top;">0.62 (0.44, 0.80)</td></tr>
   </tbody>
   
-  
 </table>
 </div>
 </div>
@@ -4659,7 +4652,6 @@ height: 0px !important;
 <td headers="Stage III" class="gt_row gt_right" style="text-align: left; vertical-align: top;">0.6 (0.4, 0.8)</td></tr>
   </tbody>
   
-  
 </table>
 </div>
 <p>As can be seen, ratios &gt; 3 are still shown with 1 fewer decimal,
@@ -5101,7 +5093,6 @@ height: 0px !important;
 <td headers="Stage II" class="gt_row gt_right" style="text-align: left; vertical-align: top;">0.2 (0.1, 0.3)</td>
 <td headers="Stage III" class="gt_row gt_right" style="text-align: left; vertical-align: top;">0.6 (0.4, 0.8)</td></tr>
   </tbody>
-  
   
 </table>
 </div>
@@ -5556,7 +5547,6 @@ height: 0px !important;
 <td headers="Stage II" class="gt_row gt_right" style="text-align: left; vertical-align: top;">0.166 (0.051, 0.282)</td>
 <td headers="Stage III" class="gt_row gt_right" style="text-align: left; vertical-align: top;">0.620 (0.441, 0.798)</td></tr>
   </tbody>
-  
   
 </table>
 </div>
@@ -6039,7 +6029,6 @@ height: 0px !important;
 <td headers="Stage III" class="gt_row gt_right" style="text-align: left; vertical-align: top; border-top-width: 0; border-top-style: solid; border-top-color: #000000;">0.51 (0.25, 0.77)</td></tr>
   </tbody>
   
-  
 </table>
 </div>
 </div>
@@ -6492,7 +6481,6 @@ height: 0px !important;
 <td headers="Stage III" class="gt_row gt_right" style="text-align: left; vertical-align: top; border-top-width: 0; border-top-style: solid; border-top-color: #000000;">0.43 (0.11, 0.76)</td></tr>
   </tbody>
   
-  
 </table>
 </div>
 <p>If a middle category of the exposure <code>stage</code> is desired as
@@ -6927,7 +6915,6 @@ height: 0px !important;
 <td headers="Stage III" class="gt_row gt_right" style="text-align: left; vertical-align: top;">0.45 (0.27, 0.64)</td></tr>
   </tbody>
   
-  
 </table>
 </div>
 <p>Using <code>forcats::fct_relevel()</code> may be preferable over
@@ -7352,7 +7339,6 @@ height: 0px !important;
 <td headers="Stage II" class="gt_row gt_left" style="text-align: left; vertical-align: top;">0 (reference)</td>
 <td headers="Stage III" class="gt_row gt_right" style="text-align: left; vertical-align: top;">0.45 (0.27, 0.64)</td></tr>
   </tbody>
-  
   
 </table>
 </div>
@@ -7804,7 +7790,6 @@ height: 0px !important;
 <td headers="Stage II" class="gt_row gt_right" style="text-align: left; vertical-align: top; border-top-width: 0; border-top-style: solid; border-top-color: #000000;">2.59 (0.94, 7.2)</td>
 <td headers="Stage III" class="gt_row gt_right" style="text-align: left; vertical-align: top; border-top-width: 0; border-top-style: solid; border-top-color: #000000;">6.9 (2.63, 18)</td></tr>
   </tbody>
-  
   
 </table>
 </div>
@@ -8261,7 +8246,6 @@ height: 0px !important;
 <td headers="Female" class="gt_row gt_right" style="text-align: left; vertical-align: top;">67.90</td></tr>
   </tbody>
   
-  
 </table>
 </div>
 <p>Instead of relying on rifttable’s built-in estimator
@@ -8707,7 +8691,6 @@ height: 0px !important;
 <td headers="Male" class="gt_row gt_left" style="text-align: left; vertical-align: top;">65 yrs</td>
 <td headers="Female" class="gt_row gt_left" style="text-align: left; vertical-align: top;">67.905 yrs</td></tr>
   </tbody>
-  
   
 </table>
 </div>
