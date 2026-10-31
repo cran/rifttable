@@ -44,7 +44,7 @@ tibble::tribble(
   "  1-year risk/cumulative incidence",    "cuminc",
   "  1-year risk (95% CI)",                "cuminc (ci)",
   "  Median survival, years",              "medsurv",
-  "  Median survival (95 CI), years",      "medsurv (ci)",
+  "  Median survival (95% CI), years",     "medsurv (ci)",
   "",                                      "",
   "**Comparative estimates**",             "",
   "  1-year survival difference",          "survdiff",
@@ -57,7 +57,7 @@ tibble::tribble(
     time = "time",
     event = "status",
     exposure = "sex",
-    arguments = list(list(timepoint = 1))
+    timepoint = 1
   ) |>
   rifttable(
     data = cancer,

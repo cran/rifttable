@@ -842,7 +842,7 @@ are the typical sources of errors:</p>
 <li>Clerical errors in variable names and arguments. There is no magic
 here except double-checking the code.</li>
 <li>Missing data. See below: <a href="#how-do-i-handle-missing-data">How
-do I handle missing data?</a>.</li>
+do I handle missing data?</a></li>
 <li>Discrepancy between estimator (<code>type</code>) and the data. For
 example, <code>type = &quot;mean&quot;</code> will not work on a categorical
 (factor) variable.</li>
@@ -1789,17 +1789,17 @@ height: 0px !important;
 <code>mutate()</code></strong></p>
 <div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" tabindex="-1"></a>design3 <span class="ot">&lt;-</span> <span class="fu">bind_rows</span>(</span>
 <span id="cb6-2"><a href="#cb6-2" tabindex="-1"></a>  <span class="fu">tibble</span>( <span class="co"># row 1</span></span>
-<span id="cb6-3"><a href="#cb6-3" tabindex="-1"></a><span class="at">label =</span> <span class="st">&quot;N&quot;</span>,</span>
-<span id="cb6-4"><a href="#cb6-4" tabindex="-1"></a><span class="at">type =</span> <span class="st">&quot;total&quot;</span></span>
+<span id="cb6-3"><a href="#cb6-3" tabindex="-1"></a>    <span class="at">label =</span> <span class="st">&quot;N&quot;</span>,</span>
+<span id="cb6-4"><a href="#cb6-4" tabindex="-1"></a>    <span class="at">type =</span> <span class="st">&quot;total&quot;</span></span>
 <span id="cb6-5"><a href="#cb6-5" tabindex="-1"></a>  ),</span>
 <span id="cb6-6"><a href="#cb6-6" tabindex="-1"></a>  <span class="fu">tibble</span>( <span class="co"># row 2</span></span>
-<span id="cb6-7"><a href="#cb6-7" tabindex="-1"></a><span class="at">label =</span> <span class="st">&quot;Deaths&quot;</span>,</span>
-<span id="cb6-8"><a href="#cb6-8" tabindex="-1"></a><span class="at">type =</span> <span class="st">&quot;outcomes&quot;</span></span>
+<span id="cb6-7"><a href="#cb6-7" tabindex="-1"></a>    <span class="at">label =</span> <span class="st">&quot;Deaths&quot;</span>,</span>
+<span id="cb6-8"><a href="#cb6-8" tabindex="-1"></a>    <span class="at">type =</span> <span class="st">&quot;outcomes&quot;</span></span>
 <span id="cb6-9"><a href="#cb6-9" tabindex="-1"></a>  )</span>
 <span id="cb6-10"><a href="#cb6-10" tabindex="-1"></a>) <span class="sc">|&gt;</span></span>
 <span id="cb6-11"><a href="#cb6-11" tabindex="-1"></a>  <span class="fu">mutate</span>( <span class="co"># elements that are the same for all rows</span></span>
-<span id="cb6-12"><a href="#cb6-12" tabindex="-1"></a><span class="at">exposure =</span> <span class="st">&quot;stage&quot;</span>,</span>
-<span id="cb6-13"><a href="#cb6-13" tabindex="-1"></a><span class="at">outcome =</span> <span class="st">&quot;death&quot;</span></span>
+<span id="cb6-12"><a href="#cb6-12" tabindex="-1"></a>    <span class="at">exposure =</span> <span class="st">&quot;stage&quot;</span>,</span>
+<span id="cb6-13"><a href="#cb6-13" tabindex="-1"></a>    <span class="at">outcome =</span> <span class="st">&quot;death&quot;</span></span>
 <span id="cb6-14"><a href="#cb6-14" tabindex="-1"></a>  )</span>
 <span id="cb6-15"><a href="#cb6-15" tabindex="-1"></a>design3</span></code></pre></div>
 <div class="kable-table">
@@ -2255,8 +2255,8 @@ height: 0px !important;
 <code>table1_design()</code></strong></p>
 <div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" tabindex="-1"></a>design4 <span class="ot">&lt;-</span> breastcancer <span class="sc">|&gt;</span></span>
 <span id="cb8-2"><a href="#cb8-2" tabindex="-1"></a>  <span class="fu">table1_design</span>(</span>
-<span id="cb8-3"><a href="#cb8-3" tabindex="-1"></a>death, <span class="co"># the total count will automatically be included</span></span>
-<span id="cb8-4"><a href="#cb8-4" tabindex="-1"></a><span class="at">by =</span> stage</span>
+<span id="cb8-3"><a href="#cb8-3" tabindex="-1"></a>    death, <span class="co"># the total count will automatically be included</span></span>
+<span id="cb8-4"><a href="#cb8-4" tabindex="-1"></a>    <span class="at">by =</span> stage</span>
 <span id="cb8-5"><a href="#cb8-5" tabindex="-1"></a>  )</span>
 <span id="cb8-6"><a href="#cb8-6" tabindex="-1"></a>design4</span></code></pre></div>
 <div class="kable-table">
@@ -2743,6 +2743,26 @@ of the <code>effect_modifier</code>. To include observations with the
 missing effect modifier, add <code>NA</code> to the requested stratum in
 the <code>design</code>, e.g.,
 <code>effect_modifier = &quot;bmi&quot;, stratum = c(&quot;&lt;25&quot;, NA)</code>.</li>
+<li>Note for <code>table1_design()</code>: Missing values
+(<code>NA</code>) for categorical variables in rows of a Table 1 are
+displayed by counts but without percentages. It is typically more
+reasonable to assume that observations with missing values fall into one
+of the existing categories than to assume that they fall into an
+entirely different category that otherwise does not exist. For example,
+in a study, <code>&quot;Asia&quot;</code> (<em>n</em> = 500; 50%) and
+<code>&quot;Other continents&quot;</code> (<em>n</em> = 500; 50%) may be possible
+values for <code>continent</code>. Study participants whose
+<code>continent</code> is <code>NA</code> (<em>n</em> = 200) likely
+belong into one of those two categories and not into another, separate
+category that did not apply to any of the participants with non-missing
+data (“extraterrestrial”?). Thus, a category for missing values should
+generally not be included in the denominator when calculating
+percentages, and rifttable operates accordingly. In unusual cases in
+which missingness is a real, informative category in the target
+population, not just the data at hand, use
+<code>forcats::fct_na_value_to_level()</code> to convert <code>NA</code>
+into a factor level before passing the <code>data</code> to
+<code>rifttable()</code>.</li>
 </ul>
 </div>
 <div id="how-do-i-add-overall-statistics" class="section level1">
@@ -3715,7 +3735,7 @@ height: 0px !important;
 </div>
 <div id="how-do-i-show-multiple-exposures-in-the-same-table" class="section level1">
 <h1>How do I show multiple exposures in the same table?</h1>
-<p>Our simple toy dataset just has one exposure variable. For
+<p>Our simple example dataset just has one exposure variable. For
 demonstration, we just create a second variable, with two categories,
 “Level 1” and “Level 2,” which is a simplified combination of the
 <code>stage</code> and <code>receptor</code> variables.</p>

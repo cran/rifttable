@@ -8,6 +8,8 @@
 [![R-CMD-check](https://github.com/stopsack/rifttable/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/stopsack/rifttable/actions/workflows/R-CMD-check.yaml)
 [![Codecov test
 coverage](https://codecov.io/gh/stopsack/rifttable/graph/badge.svg)](https://app.codecov.io/gh/stopsack/rifttable)
+[![CRAN
+status](https://www.r-pkg.org/badges/version/rifttable)](https://CRAN.R-project.org/package=rifttable)
 <!-- badges: end -->
 
 Tables are the key format in which epidemiologists present their
@@ -32,6 +34,13 @@ The rifttable package can be installed from CRAN:
 
 ``` r
 install.packages("rifttable")
+```
+
+If working within a container that defaults to specific, possibly older
+package versions, obtain the latest version from CRAN like this:
+
+``` r
+install.packages("rifttable", repos = "https://cloud.r-project.org")
 ```
 
 Development versions can be installed from

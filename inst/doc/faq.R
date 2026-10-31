@@ -67,17 +67,17 @@ rifttable(
 ## -----------------------------------------------------------------------------
 design3 <- bind_rows(
   tibble( # row 1
-label = "N",
-type = "total"
+    label = "N",
+    type = "total"
   ),
   tibble( # row 2
-label = "Deaths",
-type = "outcomes"
+    label = "Deaths",
+    type = "outcomes"
   )
 ) |>
   mutate( # elements that are the same for all rows
-exposure = "stage",
-outcome = "death"
+    exposure = "stage",
+    outcome = "death"
   )
 design3
 rifttable(
@@ -89,8 +89,8 @@ rifttable(
 ## -----------------------------------------------------------------------------
 design4 <- breastcancer |>
   table1_design(
-death, # the total count will automatically be included
-by = stage
+    death, # the total count will automatically be included
+    by = stage
   )
 design4
 rifttable(
